@@ -55,7 +55,7 @@ ROOT_URLCONF = 'Couch.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['workspace/Couch/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -8,8 +8,11 @@ from django.shortcuts import render, redirect
 
 
 
+
 def home(request):
     return HttpResponse("This is the home page")
+def about(request):
+    return HttpResponse("This is the about page")
 def game(request):
     return HttpResponse("This is the game page")
 def user(request):

@@ -22,6 +22,7 @@ class Game(models.Model):
     game_genre = models.CharField(max_length=128, unique=False)
     #score = models.FloatField(_(u"Score"), choices= SCORE_CHOICES, default=3.0)
     player_number = models.IntegerField(max_length= 3,unique = True)
+    game_image = models.ImageField(upload_to= 'game_image', blank=True)
 
     def __str__(self):
         return self.game_name

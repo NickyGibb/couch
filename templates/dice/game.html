@@ -16,12 +16,12 @@
 
        <h4> {{ Game.player_number }}</h4>
 
-       <img src="{{ dice.image.url }}" alt="image= {{Game.game_name}}"/>
+       <img src="{{ dice.image.url }}" alt="image= {{ Game.game_name}} "/>
 
 
        {% else %}
 
        <strong> No game currently  exists </strong>
 
-
+{% endif %}
 {% endblock %}

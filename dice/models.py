@@ -34,7 +34,7 @@ class Game(models.Model):
     game_genre = models.CharField(max_length=128, unique=False)
     player_number = models.IntegerField(default=0)
     game_views = models.IntegerField(default=0)
-    game_endoresments = models.IntegerField(default=0)
+    game_endorsements = models.IntegerField(default=0)
     game_image = models.ImageField(upload_to= 'game_image', blank=True)
 
     def __str__(self):

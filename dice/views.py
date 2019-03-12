@@ -17,6 +17,8 @@ def game(request):
     return HttpResponse("This is the game page")
 def user(request):
     return HttpResponse("This is the user page")
+def forum(request):
+    return HttpResponse("This is the Forum page")    
 
 def register(request):
     if request.method == 'POST':

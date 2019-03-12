@@ -1,27 +1,25 @@
-{% extends 'dice/base.html' %}
+<!DOCTYPE html>
 {% load staticfiles %}
+<html>
 
-{% block tittle_block %}
-     {{ Game.game_name }}
-{% endblock %}
+<head>
+  <title>Couch CO-OP: Game</title>
+</head>
 
-{% block body_block %}
-   {% if Game %}
+<body>
+  <h1>Select a game: </h1>
+  <div>
+  {% if categories %}
+  <ul>
+    {% for games in Categories %}
+  <li>{{ games.game_name }}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <strong>There are no categories present.</strong>
+  {% endif %}
+  </div>
 
-       <h1>{{ Game.game_name }}</h1>
+</body>
 
-       <h2> {{ Game.game_type }}</h2>
-
-       <h3> {{ Game.game_genre }}</h3>
-
-       <h4> {{ Game.player_number }}</h4>
-
-       <img src="{{ dice.image.url }}" alt="image= {{ Game.game_name}} "/>
-
-
-       {% else %}
-
-       <strong> No game currently  exists </strong>
-
-{% endif %}
-{% endblock %}
+</html>

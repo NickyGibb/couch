@@ -1,0 +1,27 @@
+{% extends 'dice/base.html' %}
+{% load staticfiles %}
+
+{% block tittle_block %}
+     {{ Game.game_name }}
+{% endblock %}
+
+{% block body_block %}
+   {% if Game %}
+
+       <h1>{{ Game.game_name }}</h1>
+
+       <h2> {{ Game.game_type }}</h2>
+
+       <h3> {{ Game.game_genre }}</h3>
+
+       <h4> {{ Game.player_number }}</h4>
+
+       <img src="{{ dice.image.url }}" alt="image= {{Game.game_name}}"/>
+
+
+       {% else %}
+
+       <strong> No game currently  exists </strong>
+
+
+{% endblock %}

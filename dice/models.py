@@ -36,3 +36,18 @@ class Forum(models.Model):
 
     def __str__(self):
         return self.post_title
+
+class Event(models.Model):
+    event_name = models.CharField(max_length=200)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    attendees = models.ManyToManyField(User, related_name='attendees')
+    start_date = models.DateTimeField(null=True)
+    end_date = models.DateTimeField(null=True)
+    location = models.CharField(max_length=200, null=True)
+    game = models.CharField(max_length=200)
+    description = models.TextField(default='Please add a description')
+
+    def __str__(self):
+        return self.event_name
+
+

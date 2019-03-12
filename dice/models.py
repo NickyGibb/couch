@@ -35,3 +35,9 @@ class Forum(models.Model):
 
     def __str__(self):
         return self.post_title
+
+class Event(models.Model)
+
+        event_name = models.CharField(max_length=128, unique= False)
+        event_location = models.CharField(max_length=128, unique= False)
+        event_date = models.DateTimeField(auto_now_add=True, blank=True)

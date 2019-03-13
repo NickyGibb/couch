@@ -20,6 +20,7 @@ from django.contrib.auth import views as auth_views
 from django.conf.urls import include
 from dice import views
 from django.conf.urls.static import static
+from machina.app import board
 
 urlpatterns = [
     url(r'^$', views.home, name = 'home'),
@@ -27,7 +28,7 @@ urlpatterns = [
     url(r'^dice/', include('dice.urls')),
     url(r'^user/$',views.user, name = 'user'),
     url(r'^game/$', views.game, name = 'game'),
-    url(r'^forum/$', views.forum, name = 'forum'),
+    url(r'^forum/', include(board.urls)),
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
     url(r'^admin/', admin.site.urls),

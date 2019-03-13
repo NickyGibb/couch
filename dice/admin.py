@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from dice.models import User, Game, Forum, Category
+from dice.models import User, Game, Category
 
 class GameAdmin(admin.ModelAdmin):
     list_display = ('game_name', 'game_type', 'game_genre', 'game_image')
@@ -14,4 +14,3 @@ class ForumAdmin(admin.ModelAdmin):
 admin.site.register(Category)
 admin.site.register(User, UserAdmin)
 admin.site.register(Game, GameAdmin)
-admin.site.register(Forum, ForumAdmin)

@@ -39,16 +39,3 @@ class Game(models.Model):
 
     def __str__(self):
         return self.game_name
-
-class Forum(models.Model):
-
-    post_title = models.CharField(max_length=128,default="", unique = False)
-    post_user = models.ForeignKey(User)
-    post_type = models.CharField(max_length=128,default="", unique= False)
-    post_views = models.IntegerField(default=0)
-    post_endorsements = models.IntegerField(default=0)
-
-
-
-    def __str__(self):
-        return self.post_title

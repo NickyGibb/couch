@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from django.template.defaultfilters import slugify
 
 from django.db import models
 
 class Category(models.Model):
     name = models.CharField(max_length=128, unique=True)
+    slug = models.SlugField(blank=True)
 
     class Meta:
         verbose_name_plural = 'Categories'
@@ -21,6 +23,14 @@ class User(models.Model):
     user_views = models.IntegerField(default=0)
     user_endorsements = models.IntegerField(default=0)
     user_image = models.ImageField(upload_to= 'user_image', blank=True)
+    slug = models.SlugField(blank=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.user_name)
+        super(User, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name_plural = 'users'
 
 
 
@@ -36,23 +46,20 @@ class Game(models.Model):
     game_views = models.IntegerField(default=0)
     game_endorsements = models.IntegerField(default=0)
     game_image = models.ImageField(upload_to= 'game_image', blank=True)
+    slug = models.SlugField(blank=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.game_name)
+        super(Game, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name_plural = 'games'
+
+
 
     def __str__(self):
         return self.game_name
 
-
-class Forum(models.Model):
-
-    post_title = models.CharField(max_length=128,default="", unique = False)
-    post_user = models.ForeignKey(User)
-    post_type = models.CharField(max_length=128,default="", unique= False)
-    post_views = models.IntegerField(default=0)
-    post_endorsements = models.IntegerField(default=0)
-
-
-
-    def __str__(self):
-        return self.post_title
 
 class Event(models.Model):
     event_name = models.CharField(max_length=200)
@@ -66,5 +73,3 @@ class Event(models.Model):
 
     def __str__(self):
         return self.event_name
-
-

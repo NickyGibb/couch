@@ -24,13 +24,14 @@ from machina.app import board
 
 urlpatterns = [
     url(r'^$', views.home, name = 'home'),
-    url(r'^about/$', views.about, name = 'about'),
+    url(r'^dice/about/$', views.about, name = 'about'),
+    url(r'^category/(?P<category_name_slug>[\w\-]+)/$', views.show_category, name = 'show_category'),
     url(r'^dice/', include('dice.urls')),
-    url(r'^user/$',views.user, name = 'user'),
-    url(r'^game/$', views.game, name = 'game'),
-    url(r'^forum/', include(board.urls)),
-    url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
-    url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
-    url(r'^admin/', admin.site.urls),
-    url(r'^register/$', views.register, name='register'),
+    url(r'^dice/user/$',views.user, name = 'user'),
+    url(r'^dice/game/$', views.game, name = 'game'),
+    url(r'^dice/forum/', include(board.urls)),
+    url(r'^dice/login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
+    url(r'^dice/logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
+    url(r'^dice/admin/', admin.site.urls),
+    url(r'^dice/register/$', views.register, name='register'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

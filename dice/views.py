@@ -11,18 +11,24 @@ from dice.models import  User,Game, Category
 
 
 def home(request):
-    return HttpResponse("This is the home page")
+
+    category_list = Category.objects.order_by('-name')[:5]
+    context_dict = {'categories': category_list}
+
+    return render(request, 'dice/home.html', context_dict)
+
+
 def about(request):
-    return HttpResponse("This is the about page")
+
+    return render(request, 'dice/about.html')
+
 def game(request):
-    game_list = Game.objects.order_by('-name')[:10]
+    game_list = Game.objects.order_by('-views')[:10]
     context_dict = {'Games': game_list}
     return render(request, 'dice/game.html', context_dict)
 
 def user(request):
     return HttpResponse("This is the user page")
-def forum(request):
-    return HttpResponse("This is the Forum page")
 
 def register(request):
     if request.method == 'POST':
@@ -61,7 +67,28 @@ def user_login(request):
         return render(request, 'hyfy/login.html', {})
 
 
-@login_required
 def user_logout(request):
-    logout(request)
-    return HttpResponseRedirect(reverse('index'))
+     logout(request)
+     return HttpResponseRedirect(reverse('index'))
+
+
+def show_category(request, category_name_slug):
+
+    context_dict= {}
+
+    try:
+
+        category = Category.objects.get(slug = game_name_slug)
+
+        games = Game.objects.filter(category = category)
+
+        context_dict['games'] = games
+
+        context_dict['category'] = category
+
+    except Category.DoesNotExist:
+
+        context_dict['category'] = None
+        context_dict['games'] = None
+
+    return render(request, 'dice/category.html', context_dict)

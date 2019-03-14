@@ -34,4 +34,5 @@ urlpatterns = [
     url(r'^dice/logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
     url(r'^dice/admin/', admin.site.urls),
     url(r'^dice/register/$', views.register, name='register'),
+    url(r'^dice/password/$', views.change_password, name='change_password'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

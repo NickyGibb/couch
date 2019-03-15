@@ -46,6 +46,7 @@ class Game(models.Model):
     game_views = models.IntegerField(default=0)
     game_endorsements = models.IntegerField(default=0)
     game_image = models.ImageField(upload_to= 'game_image', blank=True)
+    game_site = models.URLField(max_length=250, blank=True)
     slug = models.SlugField(blank=True)
 
     def save(self, *args, **kwargs):
@@ -59,6 +60,10 @@ class Game(models.Model):
 
     def __str__(self):
         return self.game_name
+
+
+
+
 
 
 class Event(models.Model):

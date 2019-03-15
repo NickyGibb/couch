@@ -15,10 +15,7 @@ from dice.models import  User,Game, Category
 
 def home(request):
 
-    category_list = Category.objects.order_by('-name')[:5]
-    context_dict = {'categories': category_list}
-
-    return render(request, 'dice/home.html', context_dict)
+    return render(request, 'dice/home.html')
 
 
 def about(request):
@@ -26,8 +23,10 @@ def about(request):
     return render(request, 'dice/about.html')
 
 def game(request):
-    game_list = Game.objects.order_by('-views')[:10]
-    context_dict = {'Games': game_list}
+    game = Game.objects.all()
+    # print(game_list)
+
+    context_dict = {'game': game}
     return render(request, 'dice/game.html', context_dict)
 
 def user(request):
@@ -76,6 +75,7 @@ def user_logout(request):
      return HttpResponseRedirect(reverse('index'))
 
 
+
 def show_category(request, category_name_slug):
 
     context_dict= {}
@@ -96,7 +96,7 @@ def show_category(request, category_name_slug):
         context_dict['games'] = None
 
     return render(request, 'dice/category.html', context_dict)
-  
+
     logout(request)
     return HttpResponseRedirect(reverse('index'))
 
@@ -115,4 +115,3 @@ def change_password(request):
     return render(request, 'accounts/change_password.html', {
         'form': form
     })
-

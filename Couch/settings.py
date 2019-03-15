@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'mptt',
     'haystack',
     'widget_tweaks',
+    'bootstrap_toolkit'
 ] + get_machina_apps()
 
 MIDDLEWARE = [

@@ -10,7 +10,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 from dice.models import  User,Game, Category
 from datetime import datetime
-
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -47,7 +47,7 @@ def user(request):
 
     visitor_cookie_handler(request)
 
-    response = render(request, 'dice/user.html', context_dict)
+    response = render(request, 'dice/profile.html', context_dict)
     return response
 
 def register(request):
@@ -152,3 +152,50 @@ def change_password(request):
     return render(request, 'accounts/change_password.html', {
         'form': form
     })
+
+@login_required
+def register_profile(request):
+
+    form = UserProfileForm()
+
+if request.method == 'POST':
+
+    form = UserProfileForm(request.POST, request.FILES)
+    if form.is_valid():
+        user_profile = form.save(commit=False)
+        user_profile.user = request.user
+        user_profile.save()
+
+return redirect('home')
+
+else: print(form.errors)
+
+context_dict = {'form':form}
+
+return render(request, 'profile_registration.html', context_dict)
+
+class MyRegistrationView(RegistrationView):
+    def get_success_url(self, user):
+        return reverse('register_profile')
+
+@login_required
+def profile(request, username):
+    try: user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        return redirect('index')
+userprofile = UserProfile.objects.get_or_create(user=user)[0]
+form = UserProfileForm(
+    {'website': userprofile.website,
+     'picture': userprofile.picture})
+
+if request.method == 'POST':
+    form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
+    if form.is_valid():
+        form.save(commit=True)
+        return redirect('profile', user.username)
+        else: print(form.errors)
+return render(request, 'rango/profile.html',
+              {'userprofile': userprofile, 'selecteduser': user, 'form': form})
+
+
+

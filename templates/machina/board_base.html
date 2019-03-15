@@ -1,9 +1,9 @@
-{% extends MACHINA_BASE_TEMPLATE_NAME %}
+{% extends 'dice/base.html' %}
 {% load static %}
 {% load i18n %}
 {% load forum_permission_tags %}
 
-{% block title %}{{ MACHINA_FORUM_NAME|default:"Forum" }} &mdash; {% block sub_title %}{% endblock sub_title %}{% endblock title %}
+{% block title %}{{ Couch CO-OP|default:"Forum" }} &mdash; {% block sub_title %}{% endblock sub_title %}{% endblock title %}
 
 {% block css %}
 {{ block.super }}
@@ -14,7 +14,7 @@
 {% block body %}
 {% block header %}
 <div class="navbar-fixed-top-spacing">&nbsp;</div>
-<div class="navbar navbar-default navbar-fixed-top machina-navbar" role="navigation">
+<div class="navbar navbar-default navbar-fixed-top CouchCO-OP-navbar" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -23,7 +23,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">{% block brand %}{{ MACHINA_FORUM_NAME|default:"My forum" }}{% endblock %}</a>
+      <a class="navbar-brand" href="/">{% block brand %}{{ Couch CO-OP|default "Couch CO-OP" }}{% endblock %}</a>
     </div>
     <div class="collapse navbar-collapse">
       {% block header_collapse %}

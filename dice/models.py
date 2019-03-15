@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from django.contrib.auth.decorators import login_required
 from django.db import models
 
 
@@ -50,4 +50,25 @@ class Event(models.Model):
     def __str__(self):
         return self.event_name
 
+class UserProfile(models.Model):
+# This line is required. Links UserProfile to a User model instance.
+user = models.OneToOneField(User)
+# The additional attributes we wish to include.
+website = models.URLField(blank=True)
+picture = models.ImageField(upload_to='profile_images', blank=True)
+# Override the __unicode__() method to return out something meaningful!
+def __str__(self):
+    return self.user.username
 
+class UserProfileForm(forms.ModelForm):
+    website = forms.URLField(required=False)
+    picture = forms.ImageField(required=False)
+class Meta:
+    model = UserProfile
+    exclude = ('user',)
+
+
+
+class MyRegistrationView(RegistrationView):
+    def get_success_url(self, user):
+        return reverse('register_profile')

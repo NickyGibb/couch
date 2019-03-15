@@ -12,7 +12,6 @@
 
 
 
-
   {% extends 'dice/base.html' %}
 {% load staticfiles %}
 <title>
@@ -34,6 +33,7 @@
   <div>
     <ul>
       <li></li> <! Here is where the links back to the pages will go for now>
+        <a href="{% url 'profile' user.username %}">Profile</a>
     </ul>
 
   </div>

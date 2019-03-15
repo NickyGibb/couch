@@ -13,7 +13,7 @@
   <ul>
     {% for game in game %}
 
-    <h1><a href="{{game.game_site}}">{{game.game_name}}</h1><br />
+    <p><font size="+4"><a href="{{ game.game_site }}">{{game.game_name}}</font></p><br />
     <p> <strong>Game Type:</strong> {{game.game_type}} </p>
     <p> <strong>Genre:</strong> {{game.game_genre}}</p>
     <p> <strong>Players:</strong> {{game.player_number}}</p>

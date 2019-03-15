@@ -9,28 +9,46 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 from dice.models import  User,Game, Category
+from datetime import datetime
 
 
 
 
 def home(request):
+    context_dict = {}
+    visitor_cookie_handler(request)
+    context_dict['visits'] = request.session['visits']
+    response = render(request, 'dice/home.html', context=context_dict)
 
-    return render(request, 'dice/home.html')
+    return response
 
 
 def about(request):
 
-    return render(request, 'dice/about.html')
+    visitor_cookie_handler(request)
+    context_dict = {}
+    context_dict['visits'] = request.session['visits']
+    response = render(request, 'dice/about.html', context=context_dict)
+
+    return response
 
 def game(request):
     game = Game.objects.all()
     # print(game_list)
-
     context_dict = {'game': game}
-    return render(request, 'dice/game.html', context_dict)
+    visitor_cookie_handler(request)
+
+    response = render(request, 'dice/game.html', context_dict)
+    return response
 
 def user(request):
     return HttpResponse("This is the user page")
+    context_dict = {}
+
+    visitor_cookie_handler(request)
+
+    response = render(request, 'dice/user.html', context_dict)
+    return response
 
 def register(request):
     if request.method == 'POST':
@@ -74,7 +92,26 @@ def user_logout(request):
      logout(request)
      return HttpResponseRedirect(reverse('index'))
 
+def get_server_side_cookie(request, cookie, default_val=None):
+    val = request.session.get(cookie)
+    if not val:
+        val = default_val
+    return val
 
+def visitor_cookie_handler(request):
+     visits = int(get_server_side_cookie(request,'visits','1'))
+     last_visit_cookie = get_server_side_cookie(request,
+     'last_visit',
+     str(datetime.now()))
+     last_visit_time = datetime.strptime(last_visit_cookie[:-7],
+      '%Y-%m-%d %H:%M:%S')
+     if (datetime.now() - last_visit_time).days > 0:
+         visits = visits + 1
+         request.session['last_visit'] = str(datetime.now())
+     else:
+         request.session['last_visit'] = last_visit_cookie
+
+     request.session['visits'] = visits
 
 def show_category(request, category_name_slug):
 

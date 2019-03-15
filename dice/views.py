@@ -194,7 +194,7 @@ if request.method == 'POST':
         form.save(commit=True)
         return redirect('profile', user.username)
         else: print(form.errors)
-return render(request, 'rango/profile.html',
+return render(request, 'dice/profile.html',
               {'userprofile': userprofile, 'selecteduser': user, 'form': form})
 
 

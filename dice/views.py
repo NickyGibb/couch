@@ -9,23 +9,46 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 from dice.models import  User,Game, Category
+from datetime import datetime
 
 
 
 
 def home(request):
-    return HttpResponse("This is the home page")
+    context_dict = {}
+    visitor_cookie_handler(request)
+    context_dict['visits'] = request.session['visits']
+    response = render(request, 'dice/home.html', context=context_dict)
+
+    return response
+
+
 def about(request):
-    return HttpResponse("This is the about page")
+
+    visitor_cookie_handler(request)
+    context_dict = {}
+    context_dict['visits'] = request.session['visits']
+    response = render(request, 'dice/about.html', context=context_dict)
+
+    return response
+
 def game(request):
-    game_list = Game.objects.order_by('-name')[:10]
-    context_dict = {'Games': game_list}
-    return render(request, 'dice/game.html', context_dict)
+    game = Game.objects.all()
+    # print(game_list)
+    context_dict = {'game': game}
+    visitor_cookie_handler(request)
+
+    response = render(request, 'dice/game.html', context_dict)
+    return response
 
 def user(request):
     return HttpResponse("This is the user page")
-def forum(request):
-    return HttpResponse("This is the Forum page")
+    context_dict = {}
+
+    visitor_cookie_handler(request)
+
+    response = render(request, 'dice/user.html', context_dict)
+    return response
 
 def register(request):
     if request.method == 'POST':
@@ -64,8 +87,53 @@ def user_login(request):
         return render(request, 'hyfy/login.html', {})
 
 
-@login_required
 def user_logout(request):
+
+     logout(request)
+     return HttpResponseRedirect(reverse('index'))
+
+def get_server_side_cookie(request, cookie, default_val=None):
+    val = request.session.get(cookie)
+    if not val:
+        val = default_val
+    return val
+
+def visitor_cookie_handler(request):
+     visits = int(get_server_side_cookie(request,'visits','1'))
+     last_visit_cookie = get_server_side_cookie(request,
+     'last_visit',
+     str(datetime.now()))
+     last_visit_time = datetime.strptime(last_visit_cookie[:-7],
+      '%Y-%m-%d %H:%M:%S')
+     if (datetime.now() - last_visit_time).days > 0:
+         visits = visits + 1
+         request.session['last_visit'] = str(datetime.now())
+     else:
+         request.session['last_visit'] = last_visit_cookie
+
+     request.session['visits'] = visits
+
+def show_category(request, category_name_slug):
+
+    context_dict= {}
+
+    try:
+
+        category = Category.objects.get(slug = game_name_slug)
+
+        games = Game.objects.filter(category = category)
+
+        context_dict['games'] = games
+
+        context_dict['category'] = category
+
+    except Category.DoesNotExist:
+
+        context_dict['category'] = None
+        context_dict['games'] = None
+
+    return render(request, 'dice/category.html', context_dict)
+
     logout(request)
     return HttpResponseRedirect(reverse('index'))
 

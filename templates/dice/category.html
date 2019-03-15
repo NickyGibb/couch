@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Couch CO-OP</title>
+</head>
+
+<body>
+  <div>
+    {% if category %}
+    <h1>{{ category.name }}</h1>
+    {% if games %}
+    <ul>
+      {% for game in games %}
+      <li><a href="{{ page.url }}">{{ game.title }}</a></li>
+      {% endfor %}
+    </ul> {% else %}
+    <strong>No pages currently in category.</strong> {% endif %}
+    {% else %}
+    The specified category does not exist!
+    {% endif %}
+  </div>
+</body>
+
+</html>

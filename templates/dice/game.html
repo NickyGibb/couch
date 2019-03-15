@@ -9,14 +9,24 @@
 <body>
   <h1>Select a game: </h1>
   <div>
-  {% if categories %}
+  {% if game %}
   <ul>
-    {% for games in Categories %}
-  <li>{{ games.game_name }}</li>
+    {% for game in game %}
+
+    <p><font size="+4"><a href="{{ game.game_site }}">{{game.game_name}}</font></p><br />
+    <p> <strong>Game Type:</strong> {{game.game_type}} </p>
+    <p> <strong>Genre:</strong> {{game.game_genre}}</p>
+    <p> <strong>Players:</strong> {{game.player_number}}</p>
+    <p> <strong>Endorsements:</strong> {{game.game_endorsements}}</p>
+    <img src="{{game.game_image.url}}" width="200" height="200">
+
+
+
+
     {% endfor %}
   </ul>
   {% else %}
-  <strong>There are no categories present.</strong>
+  <strong>There are no games present.</strong>
   {% endif %}
   </div>
 

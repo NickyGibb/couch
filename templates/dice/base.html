@@ -15,7 +15,7 @@
   <!-- Custom styles for this template -->
   <link href="css/base.css" rel="stylesheet">
 
-
+git
 {% load staticfiles %}
 <title>
 
@@ -38,19 +38,19 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Sign Up</a>
+            <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Log In</a>
+            <a class="nav-link" href="{% url 'login' %}">Log In</a>
           </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="{% url 'about' %}">About</a>
           </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Games</a>
+            <a class="nav-link" href="{% url 'game' %}">Games</a>
           </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Forums</a>
+            <a class="nav-link" href="{% url 'forum' %}">Forums</a>
           </li>
         </ul>
       </div>

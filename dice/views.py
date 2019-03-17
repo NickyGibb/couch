@@ -90,7 +90,7 @@ def user_login(request):
 def user_logout(request):
 
      logout(request)
-     return HttpResponseRedirect(reverse('index'))
+     return HttpResponseRedirect(reverse('home'))
 
 def get_server_side_cookie(request, cookie, default_val=None):
     val = request.session.get(cookie)

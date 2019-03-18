@@ -14,6 +14,7 @@ from dice.models import  User,Game, Category
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from registration.backends.simple.views import RegistrationView
+from django import forms
 
 
 def home(request):
@@ -32,7 +33,7 @@ def events(request):
 def create_event(request):
     HttpResponse("create event")
 
-    return request       
+    return request
 
 
 def about(request):
@@ -90,7 +91,7 @@ def register(request):
         user_form = UserForm()
         profile_form = UserProfileForm()
 
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'dice/register.html', {'form': forms})
 
 def user_login(request):
 
@@ -104,7 +105,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('home'))
             else:
                 return HttpResponse("Your account is disabled.")
         else:
@@ -112,7 +113,7 @@ def user_login(request):
             return HttpResponse("Invalid login details supplied.")
 
     else:
-        return render(request, 'hyfy/login.html', {})
+        return render(request, 'dice/login.html', {})
 
 
 def user_logout(request):
@@ -163,7 +164,7 @@ def show_category(request, category_name_slug):
     return render(request, 'dice/category.html', context_dict)
 
     logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('home'))
 
 def change_password(request):
     if request.method == 'POST':
@@ -199,7 +200,7 @@ def register_profile(request):
 
      context_dict = {'form':form}
 
-     return render(request, 'profile_registration.html', context_dict)
+     return render(request, 'dice/profile_registration.html', context_dict)
 
 class MyRegistrationView(RegistrationView):
     def get_success_url(self, user):
@@ -208,11 +209,11 @@ class MyRegistrationView(RegistrationView):
 
 
 @login_required
-def profile(request, username):
+def profile(request, user_name):
     try:
-        user = User.objects.get(username=username)
+        user = User.objects.get(user_name=user_name)
     except User.DoesNotExist:
-        return redirect('index')
+        return redirect('home')
     userprofile = UserProfile.objects.get_or_create(user=user)[0]
     form = UserProfileForm(
         {'website': userprofile.website,'picture': userprofile.picture})
@@ -221,7 +222,7 @@ def profile(request, username):
         form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
         if form.is_valid():
             form.save(commit=True)
-            return redirect('profile', user.username)
+            return redirect('profile', user.user_name)
         else:
             print(form.errors)
 

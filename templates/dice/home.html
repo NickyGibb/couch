@@ -2,18 +2,14 @@
 {% extends 'dice/base.html' %}
 <!DOCTYPE html>
 
-
-
-
 {% load staticfiles %} <html>
 <link rel="stylesheet" href="{% static 'static/CSS/home.css' %}">
 
-<head>
-  <title>Couch Co-op</title>
-</head>
+{% block title %}Home{% endblock %}
 
-<body>
+
 header class="masthead">
+{% block body_block%}
   <div class="container h-100">
     <div class="row h-100 align-items-center">
       <div class="col-12 text-center">
@@ -48,7 +44,7 @@ header class="masthead">
   </div>
 </body>
 </body>
-
+{% endblock %}
 </html>
 
 <html lang="en">

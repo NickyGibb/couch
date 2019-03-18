@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 from django.db import models
+from django import forms
 
 
 class Category(models.Model):
@@ -73,7 +74,7 @@ class Event(models.Model):
 
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
-    user = models.OneToOneField(User)
+    user_name = models.OneToOneField(User)
     # The additional attributes we wish to include.
     picture = models.ImageField(upload_to='user_image', blank=True)
     bio = models.CharField(max_length=800)
@@ -84,4 +85,4 @@ class UserProfile(models.Model):
 
 # Override the __unicode__() method to return out something meaningful!
 def __str__(self):
-    return self.user.username
+    return self.user.user_name

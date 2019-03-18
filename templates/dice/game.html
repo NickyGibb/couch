@@ -1,19 +1,16 @@
 <!DOCTYPE html>
+{% extends 'dice/base.html' %}
 {% load staticfiles %}
-<html>
+{% block title %}Games{% endblock %}
 
-<head>
-  <title>Couch CO-OP: Game</title>
-</head>
-
-<body>
+{% block body_block%}
   <h1>Select a game: </h1>
   <div>
   {% if game %}
   <ul>
     {% for game in game %}
 
-    <p><font size="+4"><a href="{{ game.game_site }}">{{game.game_name}}</font></p><br />
+    <p><font size="+4"><a href="{{ game.game_site }}">{{game.game_name}}</font></p><a />
     <p> <strong>Game Type:</strong> {{game.game_type}} </p>
     <p> <strong>Genre:</strong> {{game.game_genre}}</p>
     <p> <strong>Players:</strong> {{game.player_number}}</p>
@@ -30,6 +27,6 @@
   {% endif %}
   </div>
 
-</body>
 
-</html>
+
+{% endblock %}

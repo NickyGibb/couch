@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 from machina.app import board
 from registration.backends.simple.views import RegistrationView
 
+
 urlpatterns = [
     url(r'^$', views.home, name = 'home'),
     url(r'^dice/about/$', views.about, name = 'about'),

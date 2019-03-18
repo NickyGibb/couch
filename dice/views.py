@@ -2,20 +2,23 @@
 
 from django.shortcuts import redirect
 from __future__ import unicode_literals
-from django.http import HttpResponse
+from django.http import HttpResponse, request, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import login, authenticate
+from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
-
+from django.urls import reverse
 from dice.forms import UserProfileForm, UserForm
-from dice.models import  User,Game, Category
+from dice.models import User, Game, Category
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from registration.backends.simple.views import RegistrationView
+
+
 
 
 def home(request):
@@ -28,13 +31,13 @@ def home(request):
 
 
 def about(request):
-
     visitor_cookie_handler(request)
     context_dict = {}
     context_dict['visits'] = request.session['visits']
     response = render(request, 'dice/about.html', context=context_dict)
 
     return response
+
 
 def game(request):
     game = Game.objects.all()
@@ -45,6 +48,7 @@ def game(request):
     response = render(request, 'dice/game.html', context_dict)
     return response
 
+
 def user(request):
     return HttpResponse("This is the user page")
     context_dict = {}
@@ -53,6 +57,7 @@ def user(request):
 
     response = render(request, 'dice/profile.html', context_dict)
     return response
+
 
 def register(request):
     registered = False
@@ -84,8 +89,8 @@ def register(request):
 
     return render(request, 'register.html', {'form': form})
 
-def user_login(request):
 
+def user_login(request):
     if request.method == 'POST':
 
         username = request.POST.get('username')
@@ -108,9 +113,9 @@ def user_login(request):
 
 
 def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('home'))
 
-     logout(request)
-     return HttpResponseRedirect(reverse('home'))
 
 def get_server_side_cookie(request, cookie, default_val=None):
     val = request.session.get(cookie)
@@ -118,30 +123,31 @@ def get_server_side_cookie(request, cookie, default_val=None):
         val = default_val
     return val
 
-def visitor_cookie_handler(request):
-     visits = int(get_server_side_cookie(request,'visits','1'))
-     last_visit_cookie = get_server_side_cookie(request,
-     'last_visit',
-     str(datetime.now()))
-     last_visit_time = datetime.strptime(last_visit_cookie[:-7],
-      '%Y-%m-%d %H:%M:%S')
-     if (datetime.now() - last_visit_time).days > 0:
-         visits = visits + 1
-         request.session['last_visit'] = str(datetime.now())
-     else:
-         request.session['last_visit'] = last_visit_cookie
 
-     request.session['visits'] = visits
+def visitor_cookie_handler(request):
+    visits = int(get_server_side_cookie(request, 'visits', '1'))
+    last_visit_cookie = get_server_side_cookie(request,
+                                               'last_visit',
+                                               str(datetime.now()))
+    last_visit_time = datetime.strptime(last_visit_cookie[:-7],
+                                        '%Y-%m-%d %H:%M:%S')
+    if (datetime.now() - last_visit_time).days > 0:
+        visits = visits + 1
+        request.session['last_visit'] = str(datetime.now())
+    else:
+        request.session['last_visit'] = last_visit_cookie
+
+    request.session['visits'] = visits
+
 
 def show_category(request, category_name_slug):
-
-    context_dict= {}
+    context_dict = {}
 
     try:
 
-        category = Category.objects.get(slug = game_name_slug)
+        category = Category.objects.get(slug=game_name_slug)
 
-        games = Game.objects.filter(category = category)
+        games = Game.objects.filter(category=category)
 
         context_dict['games'] = games
 
@@ -156,6 +162,7 @@ def show_category(request, category_name_slug):
 
     logout(request)
     return HttpResponseRedirect(reverse('index'))
+
 
 def change_password(request):
     if request.method == 'POST':
@@ -173,9 +180,11 @@ def change_password(request):
         'form': form
     })
 
+
 @login_required
 def register_profile(request):
     form = UserProfileForm()
+
 
 if request.method == 'POST':
 
@@ -189,21 +198,24 @@ return redirect('home')
 
 else: print(form.errors)
 
-context_dict = {'form':form}
+context_dict = {'form': form}
 
-return render(request, 'profile_registration.html', context_dict)
+return render(request, 'dice/profile_registration.html', context_dict)
+
 
 class MyRegistrationView(RegistrationView):
     def get_success_url(self, user):
         return reverse('register_profile')
 
 
-
 @login_required
 def profile(request, username):
-    try: user = User.objects.get(username=username)
+    try:
+        user = User.objects.get(username=username)
     except User.DoesNotExist:
         return redirect('index')
+
+
 userprofile = UserProfile.objects.get_or_create(user=user)[0]
 form = UserProfileForm(
     {'website': userprofile.website,
@@ -214,9 +226,8 @@ if request.method == 'POST':
     if form.is_valid():
         form.save(commit=True)
         return redirect('profile', user.username)
-        else: print(form.errors)
-return render(request, 'dice/profile.html',
+        else:
+            print(form.errors)
+
+return render(request,'dice/profile.html',
               {'userprofile': userprofile, 'selecteduser': user, 'form': form})
-
-
-

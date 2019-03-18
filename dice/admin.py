@@ -2,8 +2,10 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
+
 from dice.models import User, Game, Category
 from dice.models import UserProfile
+
 
 
 class CategoryAdmin(admin.ModelAdmin):

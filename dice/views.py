@@ -8,10 +8,10 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
-from dice.models import User, Game, Category, UserProfile
+from dice.models import  User,Game, Category
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
-from dice.forms import UserForm, UserProfileForm
+
 
 
 def home(request):
@@ -184,7 +184,7 @@ def profile(request, username):
         return redirect('index')
     userprofile = UserProfile.objects.get_or_create(user=user)[0]
     form = UserProfileForm(
-        {'website': userprofile.website,'picture': userprofile.picture}
+        {'website': userprofile.website,'picture': userprofile.picture})
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES, instance=userprofile)

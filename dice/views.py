@@ -11,7 +11,7 @@ from django.shortcuts import render, redirect
 from dice.models import  User,Game, Category
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
-
+from dice.forms import UserForm, UserProfileForm
 
 
 def home(request):
@@ -182,7 +182,7 @@ class MyRegistrationView(RegistrationView):
 def profile(request, username):
     try: user = User.objects.get(username=username)
     except User.DoesNotExist:
-        return redirect('index')
+        return redirect('home')
 userprofile = UserProfile.objects.get_or_create(user=user)[0]
 form = UserProfileForm(
     {'website': userprofile.website,

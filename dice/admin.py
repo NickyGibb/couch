@@ -2,7 +2,9 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
+
 from dice.models import User, Game, Category
+
 
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}

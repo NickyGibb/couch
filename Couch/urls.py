@@ -39,6 +39,8 @@ urlpatterns = [
     url(r'^dice/profile/(?P<username>[\w\-]+)/$', views.profile, name='profile'),
     url(r'^dice/events/$', views.events, name='events'),
     url(r'^dice/createevent/$', views.create_event, name='create_event'),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
+
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

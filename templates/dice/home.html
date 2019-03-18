@@ -1,15 +1,23 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
 {% load staticfiles %} <html>
+<link rel="stylesheet" href="{% static 'static/CSS/home.css' %}">
 
 <head>
   <title>Couch Co-op</title>
 </head>
 
 <body>
+header class="masthead">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12 text-center">
   <h1>Welcome to Couch CO-OP!</h1>
   <div>
-    A website dediated to helping gamers find other gamers.
+    A website dedicated to helping gamers find other gamers.
+  </div>
+     </div>
+    </div>
   </div>
 
   <div>
@@ -27,10 +35,13 @@
 
 
   </div>
+</div>
+</div>
   <div>
     <a href="/dice/about/">Why not learn a little about your Dungeon Masters?<br />
 
   </div>
+</body>
 </body>
 
 </html>

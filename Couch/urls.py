@@ -35,4 +35,10 @@ urlpatterns = [
     url(r'^dice/admin/', admin.site.urls),
     url(r'^dice/register/$', views.register, name='register'),
     url(r'^dice/password/$', views.change_password, name='change_password'),
+    url(r'^dice/register_profile/$', views.register_profile, name='register_profile'),
+    url(r'^dice/profile/(?P<username>[\w\-]+)/$', views.profile, name='profile'),
+    url(r'^dice/events/$', views.events, name='events'),
+    url(r'^dice/createevent/$', views.create_event, name='create_event'),
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

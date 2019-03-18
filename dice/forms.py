@@ -10,3 +10,15 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('name','views','likes')
+
+class UserProfileForm(forms.ModelForm):
+
+    picture = forms.ImageField(required=False)
+    bio = forms.CharField(max_length=800,help_text="Please tell us about yourself?: ")
+    player_endorsments = forms.IntegerField(widget = forms.HiddenInput(),initial=0)
+    game_list = forms.CharField(max_length=800,help_text="Please tell us about the games you like to play?:")
+    class Meta:
+        model = UserProfile
+        fields = ('picture','bio','playerendorsments','gamelist',)
+        exclude = ('user',)
+

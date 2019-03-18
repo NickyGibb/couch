@@ -62,19 +62,29 @@ class Game(models.Model):
         return self.game_name
 
 
-
-
-
-
 class Event(models.Model):
     event_name = models.CharField(max_length=200)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     attendees = models.ManyToManyField(User, related_name='attendees')
-    start_date = models.DateTimeField(null=True)
-    end_date = models.DateTimeField(null=True)
-    location = models.CharField(max_length=200, null=True)
+    event_start = models.DateTimeField(null=True)
+    event_end = models.DateTimeField(null=True)
+    event_location = models.CharField(max_length=200, null=True)
     game = models.CharField(max_length=200)
-    description = models.TextField(default='Please add a description')
+    description = models.TextField(default='Please add a description:')
 
     def __str__(self):
         return self.event_name
+
+class UserProfile(models.Model):
+    # This line is required. Links UserProfile to a User model instance.
+    user = models.OneToOneField(User)
+    # The additional attributes we wish to include.
+    picture = models.ImageField(upload_to='user_image', blank=True)
+    bio = models.CharField(max_length=800)
+    player_endorsements = models.IntegerField(default=0)
+    player_location = models.CharField(max_length=200, null=True)
+    games_list = models.CharField(max_length=200, null=True)
+# Override the __unicode__() method to return out something meaningful!
+def __str__(self):
+    return self.user.username
+

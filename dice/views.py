@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+
+from django.shortcuts import redirect
 from __future__ import unicode_literals
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -8,10 +10,12 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
+
+from dice.forms import UserProfileForm, UserForm
 from dice.models import  User,Game, Category
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
-
+from registration.backends.simple.views import RegistrationView
 
 
 def home(request):
@@ -51,17 +55,33 @@ def user(request):
     return response
 
 def register(request):
+    registered = False
+
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('home')
+        user_form = UserForm(data=request.POST)
+        profile_form = UserProfileForm(data=request.POST)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+
+            user.set_password(user.password)
+            user.save()
+
+            profile = profile_form.save(commit=False)
+            profile.user = user
+
+            if 'picture' in request.FILES:
+                profile.picture = request.FILES['picture']
+
+            profile.save()
+
+            registered = True
+        else:
+            print(user_form.errors, profile_form.errors)
     else:
-        form = UserCreationForm()
+        user_form = UserForm()
+        profile_form = UserProfileForm()
+
     return render(request, 'register.html', {'form': form})
 
 def user_login(request):
@@ -155,6 +175,7 @@ def change_password(request):
 
 @login_required
 def register_profile(request):
+
      form = UserProfileForm()
 
      if request.method == 'POST':
@@ -175,6 +196,8 @@ def register_profile(request):
 class MyRegistrationView(RegistrationView):
     def get_success_url(self, user):
         return reverse('register_profile')
+
+
 
 @login_required
 def profile(request, username):

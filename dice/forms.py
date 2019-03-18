@@ -1,7 +1,12 @@
+
+from django import forms
+from dice.models import User, Game, UserProfile
+
 from dice import forms
 from dice.models import User,Game
 
 from dice.models import UserProfile
+
 
 
 class UserForm(forms.ModelForm):
@@ -9,6 +14,7 @@ class UserForm(forms.ModelForm):
     views = forms.IntegerField(widget = forms.HiddenInput(), initial =0)
     likes = forms.IntegerField(widget = forms.HiddenInput(),initial=0)
     password = forms.CharField(widget=forms.PasswordInput())
+    
 
     class Meta:
         model = User

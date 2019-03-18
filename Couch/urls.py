@@ -21,6 +21,7 @@ from django.conf.urls import include
 from dice import views
 from django.conf.urls.static import static
 from machina.app import board
+from registration.backends.simple.views import RegistrationView
 
 urlpatterns = [
     url(r'^$', views.home, name = 'home'),

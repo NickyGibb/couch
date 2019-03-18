@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 from __future__ import unicode_literals
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
@@ -12,7 +12,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 
 from dice.forms import UserProfileForm, UserForm
-from dice.models import  User,Game, Category
+from dice.models import User, Game, Category, UserProfile
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from registration.backends.simple.views import RegistrationView

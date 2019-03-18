@@ -1,10 +1,7 @@
 
 from django import forms
 from dice.models import User, Game, UserProfile
-
-from dice import forms
 from dice.models import User,Game
-
 from dice.models import UserProfile
 
 
@@ -14,11 +11,11 @@ class UserForm(forms.ModelForm):
     views = forms.IntegerField(widget = forms.HiddenInput(), initial =0)
     likes = forms.IntegerField(widget = forms.HiddenInput(),initial=0)
     password = forms.CharField(widget=forms.PasswordInput())
-    
+
 
     class Meta:
         model = User
-        fields = ('name','views','likes','password')
+        fields = ('username','views','likes','password')
 
 class UserProfileForm(forms.ModelForm):
 
@@ -30,4 +27,3 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ('picture','bio','player_endorsments','game_list',)
         exclude = ('user',)
-

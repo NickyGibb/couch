@@ -46,8 +46,9 @@ INSTALLED_APPS = [
     'mptt',
     'haystack',
     'widget_tweaks',
-    'bootstrap_toolkit'
-    'registration'
+    'bootstrap_toolkit',
+    'registration',
+    
 ] + get_machina_apps()
 
 MIDDLEWARE = [
@@ -167,4 +168,3 @@ LOGIN_REDIRECT_URL = 'dice/home/'
 # The page users are directed to if they are not logged in,
 # and are trying to access pages requiring authentication
 LOGIN_URL = '/accounts/login/'
-

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-
-from django.shortcuts import redirect
 from __future__ import unicode_literals
+from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import login, authenticate
@@ -10,7 +9,6 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
-
 from dice.forms import UserProfileForm, UserForm
 from dice.models import  User,Game, Category
 from datetime import datetime
@@ -25,6 +23,16 @@ def home(request):
     response = render(request, 'dice/home.html', context=context_dict)
 
     return response
+
+def events(request):
+    HttpResponse("Events page")
+
+    return request
+
+def create_event(request):
+    HttpResponse("create event")
+
+    return request       
 
 
 def about(request):

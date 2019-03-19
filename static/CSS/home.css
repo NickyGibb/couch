@@ -2,7 +2,7 @@
 .masthead {
   height: 100vh;
   min-height: 500px;
-  background-image:src="{% static\images\website_image\alien-arcade-background.jpg' %}" ;
+  background-image:src="{% static\images\website_image\couch co-op home.png' %}" ;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

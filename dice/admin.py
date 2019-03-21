@@ -29,3 +29,4 @@ class UserProfileAdmin(admin.ModelAdmin):
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(User, UserAdmin)
 admin.site.register(Game, GameAdmin)
+admin.site.register(UserProfile)

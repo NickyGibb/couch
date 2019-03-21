@@ -16,6 +16,8 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from registration.backends.simple.views import RegistrationView
 from django import forms
+from django.core.urlresolvers import reverse
+
 
 
 def home(request):
@@ -93,7 +95,7 @@ def register(request):
         user_form = UserForm()
         profile_form = UserProfileForm()
 
-    return render(request, 'dice/register.html', {'form': forms})
+    return render(request, 'dice/register.html', {'user_form': user_form, 'profile_form':profile_form, 'registered':registered})
 
 def user_login(request):
 
@@ -128,6 +130,35 @@ def get_server_side_cookie(request, cookie, default_val=None):
     if not val:
         val = default_val
     return val
+
+def user_login(request):
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('userpassword')
+
+
+        user = authenticate(username=username, password=password)
+
+
+
+        if user:
+
+            if user.is_active:
+
+                login(request, user)
+                return HttpResponseRedirect(reverse('dice:home'))
+
+            else:
+                return HttpResponse("Your Couch CO-OP account is disabled.")
+
+        else:
+            print("Invalid login details: {0}, {1})".format(username, password))
+            return HttpResponse("Invalid login details provided.")
+
+    else:
+        return render(request, 'dice/login.html',{})
+
 
 def visitor_cookie_handler(request):
      visits = int(get_server_side_cookie(request,'visits','1'))

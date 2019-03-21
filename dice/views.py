@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
@@ -34,6 +35,7 @@ def create_event(request):
     HttpResponse("create event")
 
     return request
+
 
 
 def about(request):
@@ -165,6 +167,36 @@ def show_category(request, category_name_slug):
 
     logout(request)
     return HttpResponseRedirect(reverse('home'))
+
+
+@login_required
+def like_game (request):
+    game_id = None
+    if request.method == 'GET':
+        game_id == request.GET['game_id']
+    likes = 0
+    if game_id:
+        game = Game.objects.get(id=ind(game_id))
+        if game:
+            likes = game.likes +1
+            game.likes = likes
+            game.save()
+    return HttpResponse(likes)
+
+@login_required
+def dislike_game (request):
+    game_id = None
+    if request.method == 'GET':
+        game_id = request.GET['game_id']
+    dislikes = 0
+    if game_id:
+        game = Game.objects.get(id=ind(game_id))
+        if game:
+            likes = game.dislikes +1
+            game.dislikes = dislikes
+            game.save()
+    return HttpResponse(dislikes)
+
 
 def change_password(request):
     if request.method == 'POST':

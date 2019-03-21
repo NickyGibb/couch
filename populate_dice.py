@@ -3,7 +3,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Couch.settings')
 
 import django
 django.setup()
-from dice.models import User,Game,Forum,Category
+from dice.models import User,Game,Category
 
 def populate():
 
@@ -53,24 +53,11 @@ def populate():
     ]
 
 
-    Forums = [
-          {"Post Title" : "Help me.",
-          "Post Type" : "Advice" },
-          {"Post Title" : "Stop praying for my grandpa, you're making him too powerful!",
-          "Post Type" : " Joke "},
-          {"Post Title" : "Miracle child festival 6: Stop me from burying your child, help me bury your child.",
-          "Post Type" : "Discussion"},
-          {"Post Title" : "Day One Purchase Regret",
-          "Post Type" : "Review"},
-          {"Post Title" : "Steel Ball Run",
-          "Post Type" : "Misc"},
-          {"Post Title" : "Gamer Seeking Gamer (GLASGOW)",
-          "Post Type" : "Game Search"}
-    ]
+
 
     cats = {"Game" : {"Game" : Game},
             "User" : {"User" : User},
-            "Forums" : {"Forums" : Forums} }
+             }
 
 
 

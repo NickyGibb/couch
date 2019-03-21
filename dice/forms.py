@@ -8,7 +8,8 @@ from dice.models import UserProfile
 
 
 class UserForm(forms.ModelForm):
-    username = forms.CharField(max_length=128,help_text="Please enter Username: ")
+    username = forms.CharField(max_length=128)
+    email = forms.CharField(widget=forms.EmailInput())
     views = forms.IntegerField(widget = forms.HiddenInput(), initial =0)
     likes = forms.IntegerField(widget = forms.HiddenInput(),initial=0)
     password = forms.CharField(widget=forms.PasswordInput())
@@ -16,10 +17,9 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username','views','likes','password')
+        fields = ('username','email','views','likes','password')
 
 class UserProfileForm(forms.ModelForm):
-
     picture = forms.ImageField(required=False)
     bio = forms.CharField(max_length=800,help_text="Please tell us about yourself?: ")
     game_list = forms.CharField(max_length=800,help_text="Please tell us about the games you like to play?:")

@@ -19,7 +19,7 @@ class GameAdmin(admin.ModelAdmin):
 
 class UserAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('user_name',)}
-    list_display = ('user_name','user_email', 'user_views', 'user_image')
+    list_display = ('user_name', 'user_views', 'user_image')
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user_name', 'picture', 'bio', 'player_endorsements', 'player_location', 'games_list')

@@ -1,21 +1,30 @@
 {% extends 'dice/base.html' %}
 {% load staticfiles %}
 {% block body_block %}
-<h1>Register for Couch Co-OP</h1>
-{% if registered %}
-Rango says: <strong>thank you for registering!</strong>
-<a href="{% url 'index' %}">Return to the homepage.</a><br />
-{% else %}
-Couch Co-Op<strong>register here!</strong><br />
-<form id="user_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
+<main class="page registration-page">
+        <section class="clean-block clean-form dark" style="background-image: url(&quot;assets/img/couch%20co-op.jpg&quot;);">
+            <div class="container">
+                <div class="block-heading">
+                    <h1 style="color: #ffffff;font-size: 49px;font-family: 'Advent Pro', sans-serif;opacity: 1;"><strong>Register</strong></h1>
+                </div>
+                    {% if registered %}
+            <p>You're all set now.</p>
+                    <a href="{% url 'login' %}" class="button">Log in</a>
+            {% else %}
 
-  {% csrf_token %} 19
-  <!-- Display each form -->
-  {{ user_form.as_p }}
-  {{ profile_form.as_p }}
+            <form id="user_form" method="post" action="{% url 'register' %}" enctype=""="multipart/form-data">
 
-  <!-- Provide a button to click to submit the form. -->
-  <input type="submit" name="submit" value="Register" />
-</form>
+
+              {% csrf_token %}
+              <!-- Display each form -->
+              {{ user_form.as_p }}
+              {{ profile_form.as_p }}
+
+
+                  <button class="btn btn-primary btn-block" type="submit">Sign Up</button></form>
+            </div>
+        </section>
+    </main>
+
 {% endif %}
 {% endblock %}

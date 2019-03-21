@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'bootstrap_toolkit',
     'registration',
+    'bootstrap4'
 
 ] + get_machina_apps()
 

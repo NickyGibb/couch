@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 from django.shortcuts import redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
@@ -68,34 +68,16 @@ def user(request):
     return response
 
 def register(request):
-    registered = False
-
     if request.method == 'POST':
-        user_form = UserForm(data=request.POST)
-        profile_form = UserProfileForm(data=request.POST)
-
-        if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
-
-            user.set_password(user.password)
-            user.save()
-
-            profile = profile_form.save(commit=False)
-            profile.user = user
-
-            if 'picture' in request.FILES:
-                profile.picture = request.FILES['picture']
-
-            profile.save()
-
-            registered = True
-        else:
-            print(user_form.errors, profile_form.errors)
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('home')
     else:
-        user_form = UserForm()
-        profile_form = UserProfileForm()
+        form = UserCreationForm()
 
-    return render(request, 'dice/register.html', {'user_form': user_form, 'profile_form':profile_form, 'registered':registered})
+        args = {'form':form}
+        return render(request, 'dice/register.html', args)
 
 def user_login(request):
     error = None

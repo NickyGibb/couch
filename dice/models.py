@@ -21,7 +21,6 @@ class User(models.Model):
     user_name = models.CharField(max_length=128, unique=False)
     user_email = models.CharField(max_length=128, unique=True)
     user_views = models.IntegerField(default=0)
-    user_endorsements = models.IntegerField(default=0)
     user_image = models.ImageField(upload_to='user_image', blank=True)
     slug = models.SlugField(blank=True)
 
@@ -76,9 +75,8 @@ class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user_name = models.OneToOneField(User)
     # The additional attributes we wish to include.
-    picture = models.ImageField(upload_to='user_image', blank=True)
+    user_image = models.ImageField(upload_to='user_image', blank=True)
     bio = models.CharField(max_length=800)
-    player_endorsements = models.IntegerField(default=0)
     player_location = models.CharField(max_length=200, null=True)
     games_list = models.CharField(max_length=200, null=True)
 

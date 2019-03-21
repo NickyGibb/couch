@@ -1,60 +1,102 @@
 element.style {
+  font-family: 'Advent Pro', sans-serif;
+  color: #eeeeee;
 }
 
-.navbar-light .navbar-toggler {
-  color: rgba(0,0,0,.5);
-  border-color: rgba(0,0,0,.1);
+.clean-navbar.fixed-bottom, .clean-navbar.fixed-top {
+  box-shadow: 0 0 15px rgba(0,0,0,.1);
 }
 
-@media (min-width:992px) {
-  .navbar-expand-lg .navbar-toggler {
-    display: none;
+@media (min-width:576px) {
+  .navbar {
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
   }
 }
 
-.navbar-toggler:focus, .navbar-toggler:hover {
-  text-decoration: none;
+.fixed-bottom, .fixed-top {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
 }
 
-[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
-  cursor: pointer;
+.fixed-top {
+  top: 0;
 }
 
-button:focus {
-  outline: 1px dotted;
-  outline: 5px auto -webkit-focus-ring-color;
+.bg-white {
+  background-color: #fff!important;
 }
 
-.navbar-toggler {
-  padding: .25rem .75rem;
-  font-size: 1.25rem;
-  line-height: 1;
-  background-color: transparent;
-  border: 1px solid transparent;
-  border-radius: .25rem;
+@media (min-width:992px) {
+  .navbar-expand-lg {
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+  }
 }
 
-[type=button], [type=reset], [type=submit], button {
-  -webkit-appearance: button;
+.navbar, .navbar > .container, .navbar > .container-fluid {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
-button, select {
-  text-transform: none;
+.navbar {
+  position: relative;
+  padding: .5rem 1rem;
 }
 
-button, input {
-  overflow: visible;
+nav {
+  display: block;
 }
 
-button, input, optgroup, select, textarea {
-  margin: 0;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
+element.style {
 }
 
-button {
-  border-radius: 0;
+.page-footer.dark {
+  background-color: #2b2f31;
+}
+
+@media (min-width:576px) {
+  .page-footer {
+    text-align: left;
+  }
+}
+
+.page-footer {
+  background-color: #fff;
+  padding-top: 30px;
+  text-align: center;
+}
+
+footer {
+  display: block;
+}
+
+.page-footer.dark .footer-copyright {
+  background-color: #222425;
+  border-color: #222425;
+}
+
+.page-footer .footer-copyright {
+  background-color: #fff;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  text-align: center;
+  margin-top: 50px;
+  border: 1px solid #ededed;
+}
+
+element.style {
+  font-family: 'Advent Pro', sans-serif;
 }
 
 body {
@@ -77,4 +119,5 @@ html {
 
 
 
-}
+
+

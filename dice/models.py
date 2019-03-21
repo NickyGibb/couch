@@ -19,6 +19,8 @@ class Category(models.Model):
 
 class User(models.Model):
     user_name = models.CharField(max_length=128, unique=False)
+    set_password= forms.CharField(widget=forms.PasswordInput())
+    password = set_password
     user_views = models.IntegerField(default=0)
     user_image = models.ImageField(upload_to='user_image', blank=True)
     slug = models.SlugField(blank=True)

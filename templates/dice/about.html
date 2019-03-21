@@ -1,4 +1,4 @@
-{% extends 'templates/dice/base.html' %}
+{% extends 'dice/base.html' %}
 {% load staticfiles %}
 {% block title_block %}
 AboutUs
@@ -8,7 +8,7 @@ AboutUs
 
 <body>
     <main class="page">
-        <section class="clean-block about-us" style="background-image: url(&quot;static/images/website_image/couch co-op.jpg&quot;);">
+        <section class="clean-block about-us" style= "background-image: img src="{% static 'images/website_image/couch co-op.jpg' %}">
             <div class="container">
                 <div class="block-heading" style="height: 275px;">
                     <h1 style="color: #ffffff;font-size: 50px;filter: grayscale(0%) sepia(0%);font-family: 'Advent Pro', sans-serif;"><strong>ABOUT</strong></h1>

@@ -93,7 +93,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('home'))
+                return HttpResponse("You are logged in!")
             else:
                 return HttpResponse("Your account is disabled.")
         else:

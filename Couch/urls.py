@@ -18,10 +18,11 @@ from django.contrib import admin
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.conf.urls import include
-from dice import views
 from django.conf.urls.static import static
 from machina.app import board
+from dice import views
 from registration.backends.simple.views import RegistrationView
+
 
 
 urlpatterns = [
@@ -29,7 +30,8 @@ urlpatterns = [
     url(r'^about', views.about, name = 'about'),
     url(r'^dice/', include('dice.urls')),
     url(r'^admin/', admin.site.urls),
-    
+
+
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

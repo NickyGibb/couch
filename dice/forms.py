@@ -1,5 +1,6 @@
 
 from django import forms
+from django.contrib.auth.models import User
 from dice.models import User, Game, UserProfile
 from dice.models import User,Game
 from dice.models import UserProfile

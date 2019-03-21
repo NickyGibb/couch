@@ -98,6 +98,7 @@ def register(request):
     return render(request, 'dice/register.html', {'user_form': user_form, 'profile_form':profile_form, 'registered':registered})
 
 def user_login(request):
+    error = None
 
     if request.method == 'POST':
 
@@ -109,7 +110,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('dice')
+                return HttpResponseRedirect(reverse('home'))
             else:
                 return HttpResponse("Your account is disabled.")
         else:

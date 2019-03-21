@@ -9,7 +9,7 @@ from machina.app import board
 from registration.backends.simple.views import RegistrationView
 
 urlpatterns=[
-     url(r'^$', views.home, name = 'home'),
+     url(r'^home', views.home, name = 'home'),
      url(r'^about', views.about, name = 'about'),
      url(r'^category/(?P<category_name_slug>[\w\-]+)/$', views.show_category, name = 'show_category'),
      url(r'^user/$',views.user, name = 'user'),

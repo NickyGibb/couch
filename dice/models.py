@@ -19,6 +19,7 @@ class Category(models.Model):
 
 class User(models.Model):
     user_name = models.CharField(max_length=128, unique=False)
+    
     user_email = models.CharField(max_length=128, unique=True)
     user_views = models.IntegerField(default=0)
     user_image = models.ImageField(upload_to='user_image', blank=True)

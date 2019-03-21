@@ -17,6 +17,7 @@ from django.contrib.auth.decorators import login_required
 from registration.backends.simple.views import RegistrationView
 from django import forms
 from django.core.urlresolvers import reverse
+from dice.forms import RegistrationForm
 
 
 
@@ -69,12 +70,12 @@ def user(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
         return redirect('home')
     else:
-        form = UserCreationForm()
+        form = RegistrationForm()
 
         args = {'form':form}
         return render(request, 'dice/register.html', args)

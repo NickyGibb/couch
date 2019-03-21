@@ -17,24 +17,6 @@ class Category(models.Model):
         return self.name
 
 
-class User(models.Model):
-    user_name = models.CharField(max_length=128, unique=False)
-    set_password= forms.CharField(widget=forms.PasswordInput())
-    password = set_password
-    user_views = models.IntegerField(default=0)
-    user_image = models.ImageField(upload_to='user_image', blank=True)
-    slug = models.SlugField(blank=True)
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.user_name)
-        super(User, self).save(*args, **kwargs)
-
-    class Meta:
-        verbose_name_plural = 'users'
-
-    def __str__(self):
-        return self.user_name
-
 
 class Game(models.Model):
     game_name = models.CharField(max_length=128, unique=True)
@@ -61,8 +43,7 @@ class Game(models.Model):
 
 class Event(models.Model):
     event_name = models.CharField(max_length=200)
-    creator = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    attendees = models.ManyToManyField(User, related_name='attendees')
+
     event_start = models.DateTimeField(null=True)
     event_end = models.DateTimeField(null=True)
     event_location = models.CharField(max_length=200, null=True)
@@ -75,7 +56,7 @@ class Event(models.Model):
 
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
-    user_name = models.OneToOneField(User)
+    user = models.OneToOneField(User)
     # The additional attributes we wish to include.
     user_image = models.ImageField(upload_to='user_image', blank=True)
     bio = models.CharField(max_length=800)

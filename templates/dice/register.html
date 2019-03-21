@@ -1,29 +1,36 @@
-{% extends 'templates/dice/base.html' %}
+{% extends 'dice/base.html' %}
 {% load staticfiles %}
 {% block body_block %}
 <main class="page registration-page">
-        <section class="clean-block clean-form dark" style="background-image: url(&quot;assets/img/couch%20co-op.jpg&quot;);">
-            <div class="container">
-                <div class="block-heading">
-                    <h1 style="color: #ffffff;font-size: 49px;font-family: 'Advent Pro', sans-serif;opacity: 1;"><strong>Register</strong></h1>
-                </div>
+  <section class="clean-block clean-form dark" style="background-image: url(&quot;assets/img/couch%20co-op.jpg&quot;);">
+
+    <div class="container">
+      <div class="block-heading">
+        <h1 style="color: #ffffff;font-size: 49px;font-family: 'Advent Pro', sans-serif;opacity: 1;"><strong>Register</strong></h1>
+      </div>
+
+      <div class="container">
 
 
 
-              {% csrf_token %}
-              <!-- Display each form -->
-              {{ user_form.as_p }}
-              {{ profile_form.as_p }}
+
+        <form method="post">
+
+          {% csrf_token %}
+          <!-- Display each form -->
+      
+          {{ form.as_p }}
 
 
-                  <button class="btn btn-primary btn-block" type="submit">Sign Up</button></form>
+          <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
 
+        </form>
 
-                </form>
+      </div>
 
-            </div>
-        </section>
-    </main>
+    </div>
+  </section>
+</main>
 
 
 {% endblock %}

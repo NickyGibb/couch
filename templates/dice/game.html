@@ -5,10 +5,14 @@
 
 {% block body_block%}
   <h1>Select a game:</h1>
-  <div>
+
+
+
+
   {% if game %}
   <ul>
     {% for game in game %}
+    <div class="container">
 
     <p><font size="+4"><a href="{{ game.game_site }}">{{game.game_name}}</font></p><a />
     <p> <strong>Game Type:</strong> {{game.game_type}} </p>
@@ -20,7 +24,7 @@
               class="btn btn-primary btn-sm" type="button">
                Like
           </button>
-    <div>
+
 
     <strong id="dislike_game">{{ game.dislikes }}</strong> people dislike this game.
 
@@ -31,6 +35,9 @@
 
     </div>
     <img src="{{game.game_image.url}}" width="200" height="200">
+
+
+      </div>
 
 
 

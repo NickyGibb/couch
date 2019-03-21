@@ -144,7 +144,7 @@ MEDIA_ROOT= MEDIA_DIR
 MEDIA_URL = '/media/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATICFILES_DIRS = (os.path.join(BASE_DIR,'"static"'),MACHINA_MAIN_STATIC_DIR,)
+STATICFILES_DIRS = (os.path.join(BASE_DIR,'"static"'),MACHINA_MAIN_STATIC_DIR, STATIC_DIR)
 STATIC_URL = '/static/'
 
 CACHES = {

@@ -7,6 +7,7 @@ from dice import views
 from django.conf.urls.static import static
 from machina.app import board
 from registration.backends.simple.views import RegistrationView
+from django.contrib.auth.views import login
 
 urlpatterns=[
      url(r'^home', views.home, name = 'home'),

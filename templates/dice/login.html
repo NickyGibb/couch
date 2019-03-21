@@ -3,5 +3,22 @@
 {% block title %}Login{% endblock %}
 
 {% block body_block %}
+<div class="container">
+
+<p>
+  Please enter your details to log in!
+
+</p>
+
+<p>
+  Login
+
+</p>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Login</button>
 </form>
+</div>
 {% endblock %}

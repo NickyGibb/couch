@@ -80,29 +80,6 @@ def register(request):
         args = {'form':form}
         return render(request, 'dice/register.html', args)
 
-def user_login(request):
-    error = None
-
-    if request.method == 'POST':
-
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-
-        user = authenticate(username=username, password=password)
-
-        if user:
-            if user.is_active:
-                login(request, user)
-                return HttpResponse("You are logged in!")
-            else:
-                return HttpResponse("Your account is disabled.")
-        else:
-            print("Invalid login details: {0}, {1}".format(username, password))
-            return HttpResponse("Invalid login details supplied.")
-
-    else:
-        return render(request, 'dice/login.html', {})
-
 
 def user_logout(request):
 
@@ -131,18 +108,8 @@ def user_login(request):
             if user.is_active:
 
                 login(request, user)
-                return HttpResponseRedirect(reverse('dice:home'))
 
-            else:
-                return HttpResponse("Your Couch CO-OP account is disabled.")
-
-        else:
-            print("Invalid login details: {0}, {1})".format(username, password))
-            return HttpResponse("Invalid login details provided.")
-
-    else:
-        return render(request, 'dice/login.html',{})
-
+        return render(request, 'dice/login.html',)
 
 def visitor_cookie_handler(request):
      visits = int(get_server_side_cookie(request,'visits','1'))

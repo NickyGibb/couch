@@ -5,67 +5,116 @@ AboutUs
 {% endblock %}
 
 {% block body_block %}
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
 
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+body {
+  background-color: White;
+}
+
+h1 {
+  color: Grey
+  ;
+  text-align: center;
+  font-family: advent pro;
+
+}
+h4 {
+  color: Grey
+  ;
+  text-align: center;
+  font-family: advent pro;
+
+}
+
+
+p {
+  font-family: advent pro;
+  font-size: 20px;
+  color: grey;
+  text-align: center;
+  img-align:center;
+
+}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+  height: 20%;
+  display: center;
+}
+button {
+  background-color: blue; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-family: advent pro;
+
+  font-size: 16px;
+  display: block;
+}
+ul{
+  text-align: center;
+}
+</style>
+
+</head>
 <body>
-    <main class="page">
-        <section class="clean-block about-us" style= "background-image: src="static/images/website_image/couch co-op.jpg">
-            <div class="container">
-                <div class="block-heading" style="height: 275px;">
-                    <h1 style="color: #ffffff;font-size: 50px;filter: grayscale(0%) sepia(0%);font-family: 'Advent Pro', sans-serif;"><strong>ABOUT</strong></h1>
-                    <p style="color: #ffffff;opacity: 1;font-size: 18px;width: 500px;">Couch CO-OP is a website that allows tabletop gamers to find new and exciting games to play and have the opportunity to dicuss and meet up</p>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="card clean-card text-center"><img class="card-img-top w-100 d-block" src="static/images/website_image/avatar1.jpg">
-                            <div class="card-body info">
-                                <h4 class="card-title">Nick Gibb</h4>
-                                <p class="card-text">A young developer and tabletop fan. Nick is an avid gamer.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="card clean-card text-center"><img class="card-img-top w-100 d-block" src="static/images/website_image/avatar2.jpg" style="height: 347px;">
-                            <div class="card-body info">
-                                <h4 class="card-title">Dr. Gerardo Aragon-Camarasa</h4>
-                                <p class="card-text">A world class lecturer.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="card clean-card text-center"><img class="card-img-top w-100 d-block" src="static/images/website_image/avatar3.jpg">
-                            <div class="card-body info">
-                                <h4 class="card-title">Ryan Maloney</h4>
-                                <p class="card-text">A young developer and gamer who can't get enough of Card's Againt Humanity</p>
-                            </div>
-                        </div>
-                    </div>
+  <div class="container">
 
-                </div>
+  <div class="block-heading" style="height: 275px;">
+      <h1><strong>ABOUT</strong></h1>
+      <p>Couch CO-OP is a website that allows tabletop gamers to find new and exciting games to play and have the opportunity to dicuss and meet up</p>
+  </div>
+    </div>
+<div class="container">
 
-              <div class="card-body info">
-                <h4 class="card-title">Nick Gibb</h4>
-                <p class="card-text">A young developer and tabletop fan. Nick is an avid gamer.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-4">
-            <div class="card clean-card text-center"><img class="card-img-top w-100 d-block" src="assets/img/avatars/avatar2.jpg" style="height: 347px;">
-              <div class="card-body info">
-                <h4 class="card-title">Dr. Gerardo Aragon-Camarasa</h4>
-                <p class="card-text">A world class lecturer.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-4">
-            <div class="card clean-card text-center"><img class="card-img-top w-100 d-block" src="assets/img/avatars/avatar3.jpg">
-              <div class="card-body info">
-                <h4 class="card-title">Ryan Maloney</h4>
-                <p class="card-text">A young developer and gamer who can't get enough of Card's Againt Humanity</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+
+<div class="row">
+  <div class="column">
+    <img src="{%static "images/avatar1.jpg"%}"
+alt ="Nick Gibb" style="width:100%"/>
+    <h4 class="card-title">Nick Gibb</h4>
+    <p class="card-text">A young developer and tabletop fan. Nick is an avid gamer.</p>
+  </div>
+  <div class="column">
+    <img src="images/avatar2.jpg" alt="Forest" style="width:100%">
+    <h4 class="card-title">Dr. Gerardo Aragon-Camarasa</h4>
+    <p class="card-text">A world class lecturer.</p>
+
+  </div>
+  <div class="column">
+    <img src="images/avatar3.jpg" alt="Mountains" style="width:100%">
+    <h4 class="card-title">Ryan Maloney</h4>
+    <p class="card-text">A young developer and gamer who can't get enough of Card's Againt Humanity</p>
+  </div>
+</div>
+</div>
+</body>
+</html>
+
     </section>
   </main>
   {% endblock %}

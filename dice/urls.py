@@ -28,4 +28,4 @@ urlpatterns=[
      url(r'^accounts/', include('registration.backends.simple.urls')),
      url(r'^like/$', views.like_game, name='like_game'),
      url(r'^dislike/$', views.dislike_game, name='dislike_game'),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

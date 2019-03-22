@@ -30,5 +30,6 @@ urlpatterns = [
     url(r'^about', views.about, name = 'about'),
     url(r'^dice/', include('dice.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^profile/(?P<user_name>[\w\-]+)/$', views.profile, name='profile'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

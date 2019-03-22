@@ -2,6 +2,44 @@
 {% load staticfiles %}
 {% block body_block %}
 
+<style>
+*
+
+body {
+  background-color: White;
+}
+
+h1 {
+  color: Grey
+  ;
+  text-align: center;
+  font-family: advent pro;
+
+}
+
+
+
+form {
+  font-family: advent pro;
+  font-size: 20px;
+  color: grey;
+  
+
+}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 35px;
+  height: 350px;
+  display: center;
+}
+
+ul{
+  text-align: center;
+}
+</style>
+
 <main class="page registration-page">
   <section class="clean-block clean-form dark" style="background-image: url(&quot;assets/img/couch%20co-op.jpg&quot;);">
 
@@ -19,7 +57,7 @@
 
           {% csrf_token %}
           <!-- Display each form -->
-      
+
           {{ form.as_p }}
 
 

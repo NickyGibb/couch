@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import update_session_auth_hash
@@ -92,24 +92,24 @@ def get_server_side_cookie(request, cookie, default_val=None):
         val = default_val
     return val
 
-def user_login(request):
+def login_view(request):
 
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('userpassword')
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+
+            user = form.get_user()
+            login(request,user)
+            if 'next' in request.POST:
+                return redirect(request.POST.get('next'))
+            else:
+             return redirect('home')
+    else:
+        form = AuthenticationForm()
+    return render(request,'dice/login.html', {'form':form})
 
 
-        user = authenticate(username=username, password=password)
 
-
-
-        if user:
-
-            if user.is_active:
-
-                login(request, user)
-
-        return render(request, 'dice/login.html',)
 
 def visitor_cookie_handler(request):
      visits = int(get_server_side_cookie(request,'visits','1'))

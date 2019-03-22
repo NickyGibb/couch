@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import update_session_auth_hash
@@ -80,29 +80,6 @@ def register(request):
         args = {'form':form}
         return render(request, 'dice/register.html', args)
 
-def user_login(request):
-    error = None
-
-    if request.method == 'POST':
-
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-
-        user = authenticate(username=username, password=password)
-
-        if user:
-            if user.is_active:
-                login(request, user)
-                return HttpResponse("You are logged in!")
-            else:
-                return HttpResponse("Your account is disabled.")
-        else:
-            print("Invalid login details: {0}, {1}".format(username, password))
-            return HttpResponse("Invalid login details supplied.")
-
-    else:
-        return render(request, 'dice/login.html', {})
-
 
 def user_logout(request):
 
@@ -115,33 +92,23 @@ def get_server_side_cookie(request, cookie, default_val=None):
         val = default_val
     return val
 
-def user_login(request):
+def login_view(request):
 
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('userpassword')
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
 
-
-        user = authenticate(username=username, password=password)
-
-
-
-        if user:
-
-            if user.is_active:
-
-                login(request, user)
-                return HttpResponseRedirect(reverse('dice:home'))
-
+            user = form.get_user()
+            login(request,user)
+            if 'next' in request.POST:
+                return redirect(request.POST.get('next'))
             else:
-                return HttpResponse("Your Couch CO-OP account is disabled.")
-
-        else:
-            print("Invalid login details: {0}, {1})".format(username, password))
-            return HttpResponse("Invalid login details provided.")
-
+             return redirect('home')
     else:
-        return render(request, 'dice/login.html',{})
+        form = AuthenticationForm()
+    return render(request,'dice/login.html', {'form':form})
+
+
 
 
 def visitor_cookie_handler(request):

@@ -4,7 +4,58 @@
 {% block title %}Games{% endblock %}
 
 {% block body_block%}
+
+<style>
+body {
+  background-color: White;
+}
+
+h1 {
+  color: Grey
+  ;
+  text-align: center;
+  font-family: advent pro;
+
+}
+
+p {
+  font-family: advent pro;
+  font-size: 20px;
+  color: grey;
+  text-align: center;
+  img-align:center;
+
+}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+  height: 20%;
+}
+button {
+  background-color: blue; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-family: advent pro;
+
+  font-size: 16px;
+  display: block;
+}
+ul{
+  text-align: center;
+}
+</style>
   <h1>Select a game:</h1>
+
+
+
+  <body>
+
+
 
 
 
@@ -18,7 +69,10 @@
     <p> <strong>Game Type:</strong> {{game.game_type}} </p>
     <p> <strong>Genre:</strong> {{game.game_genre}}</p>
     <p> <strong>Players:</strong> {{game.player_number}}</p>
-    <div>
+
+      <ul>
+
+
     <strong id="like_game">{{ game.likes }}</strong> people endorse this game.
           <button id="likes" data-catid="{{game.id}}"
               class="btn btn-primary btn-sm" type="button">
@@ -30,8 +84,10 @@
 
            <button id="dislikes" data-catid="{{game.id}}"
                 class="btn btn-primary btn-sm" type="button">
-                Like
+                DisLike
            </button>
+
+           <ul>
 
     </div>
     <img src="{{game.game_image.url}}" width="200" height="200">
@@ -45,6 +101,8 @@
 
   </ul>
   </div>
+
+    </body>
 
 {% endfor %}
 -

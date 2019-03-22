@@ -10,10 +10,9 @@
         <div class="card card-signin flex-row my-5">
           <div class="card-img-left d-none d-md-flex">
              <!-- Background image for card set in CSS! -->
-             <form id="user_form" method="post" action="{% url 'register' %}" 16 enctype="multipart/form-data"> 17 18
+             <form id="user_form" method="post" action="{% url 'register' %}" 16 enctype="multipart/form-data">
 
                  {% csrf_token %}
-          </div>
           <div class="card-body">
             <h5 class="card-title text-center">Register</h5>
             <form class="form-signin">

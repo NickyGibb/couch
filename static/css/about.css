@@ -1,0 +1,62 @@
+<style>
+* {
+  box-sizing: border-box;
+}
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+body {
+  body {
+  background-image: url(static/website_image/couch co-op.jpg);
+}
+}
+h1 {
+  color: Grey
+  ;
+  text-align: center;
+  font-family: advent pro;
+}
+h4 {
+  color: Grey
+  ;
+  text-align: center;
+  font-family: advent pro;
+}
+p {
+  font-family: advent pro;
+  font-size: 20px;
+  color: grey;
+  text-align: center;
+  img-align:center;
+}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+  height: 20%;
+  display: center;
+}
+button {
+  background-color: blue; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-family: advent pro;
+  font-size: 16px;
+  display: block;
+}
+ul{
+  text-align: center;
+}
+</style>

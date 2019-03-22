@@ -9,16 +9,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Advent+Pro">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-    <link rel="stylesheet" href="static/css/Profile-Edit-Form-1.css">
-    <link rel="stylesheet" href="static/css/Profile-Edit-Form.css">
-    <link rel="stylesheet" href="static/css/smoothproducts.css">
-    <link rel="stylesheet" href="static/css/styles.min.css">
+     <link rel="stylesheet" href="static/css/base.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 
 </head>
 
@@ -35,50 +29,57 @@
 
 <body>
 <!-- Navigation -->
-<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar" style="font-family: 'Advent Pro', sans-serif;color: #eeeeee;">
-        <div class="container"><a class="navbar-brand logo" href="{% url '/dice/home.html' %">COUCH CO-OP</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse"
-                id="navcol-1" style="background-color: #ffffff;">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'about' %}">ABOUT</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'game' %}">GAMES</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/dice/forum/">FORUM</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'register' %}">REGISTER</a></li>
-                  <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'login' %}">LOGIN</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">Start Bootstrap</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dice/about.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dice/game.html">Games</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dice/forum/">Forum</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="/dice/register.html">Register</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="/dice/login.html">Login</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
     {% block body_block %}
     {% endblock %}
   </div>
   <hr />
   <div>
-    <ul>
 
-
- <a href="/profile/(?P<user_name>[\w\-]+)/">Profile</a>
-    </ul>
-  </div>
-<div class="container-fluid">
-  ...
-</div>
 
 <!-- Footer -->
-  <footer class="page-footer dark">
-        <div class="footer-copyright">
-            <p style="font-family: 'Advent Pro', sans-serif;">© 2019 COUCH CO-OP</p>
-        </div>
-    </footer>
+  <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+    <div class="container text-center">
+      <small>Copyright &copy; Couch CO-OP</small>
+    </div>
+  </footer>
 
 <script src="static/js/jquery.min.js"></script>
-    <script src="static/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-    <script src="static/js/smoothproducts.min.js"></script>
-    <script src="static/js/theme.js"></script>
-    <script src="static/js/Profile-Edit-Form.js"></script>
-
-</body>
+      <script src="static/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+<link rel="stylesheet" href= "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js">
+<link rel="stylesheet" href= "https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 
 </html>

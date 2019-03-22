@@ -1,123 +1,14 @@
-element.style {
-  font-family: 'Advent Pro', sans-serif;
-  color: #eeeeee;
-}
+/* Sticky Footer Classes */
 
-.clean-navbar.fixed-bottom, .clean-navbar.fixed-top {
-  box-shadow: 0 0 15px rgba(0,0,0,.1);
-}
-
-@media (min-width:576px) {
-  .navbar {
-    padding-top: 1.2rem;
-    padding-bottom: 1.2rem;
-  }
-}
-
-.fixed-bottom, .fixed-top {
-  position: fixed;
-  right: 0;
-  left: 0;
-  z-index: 1030;
-}
-
-.fixed-top {
-  top: 0;
-}
-
-.bg-white {
-  background-color: #fff!important;
-}
-
-@media (min-width:992px) {
-  .navbar-expand-lg {
-    -ms-flex-flow: row nowrap;
-    flex-flow: row nowrap;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-  }
-}
-
-.navbar, .navbar > .container, .navbar > .container-fluid {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -ms-flex-align: center;
-  align-items: center;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.navbar {
-  position: relative;
-  padding: .5rem 1rem;
-}
-
-nav {
-  display: block;
-}
-
-element.style {
-}
-
-.page-footer.dark {
-  background-color: #2b2f31;
-}
-
-@media (min-width:576px) {
-  .page-footer {
-    text-align: left;
-  }
-}
-
-.page-footer {
-  background-color: #fff;
-  padding-top: 30px;
-  text-align: center;
-}
-
-footer {
-  display: block;
-}
-
-.page-footer.dark .footer-copyright {
-  background-color: #222425;
-  border-color: #222425;
-}
-
-.page-footer .footer-copyright {
-  background-color: #fff;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  text-align: center;
-  margin-top: 50px;
-  border: 1px solid #ededed;
-}
-
-element.style {
-  font-family: 'Advent Pro', sans-serif;
-}
-
+html,
 body {
-  margin: 0;
-  font-family: Montserrat,sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #212529;
-  text-align: left;
-  background-color: #fff;
+  height: 100%;
 }
 
-html {
-  font-family: sans-serif;
-  line-height: 1.15;
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent;
+#page-content {
+  flex: 1 0 auto;
 }
 
-
-
-
-
+#sticky-footer {
+  flex-shrink: none;
+}

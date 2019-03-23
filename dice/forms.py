@@ -5,6 +5,8 @@ from dice.models import User, Game, UserProfile
 from dice.models import User,Game
 from dice.models import UserProfile
 from django.contrib.auth.forms import UserCreationForm
+from django.forms.models import inlineformset_factory
+from django.core.exceptions import PermissionDenied
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)

@@ -4,6 +4,9 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 from django.db import models
 from django import forms
+from django.db.models.signals import post_save
+from django.utils.translation import ugettext_lazy as _
+from mezzanine.core.fields import FileField
 
 
 class Category(models.Model):
@@ -59,11 +62,14 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
     # The additional attributes we wish to include.
     user_image = models.ImageField(upload_to='user_image', blank=True)
-    bio = models.CharField(max_length=800)
-    player_location = models.CharField(max_length=200, null=True)
+    bio = models.TextField(default='', blank=True)
+    player_location = models.CharField(max_length=200, default='', blank=True)
     games_list = models.CharField(max_length=200, null=True)
 
 
-# Override the __unicode__() method to return out something meaningful!
-def __str__(self):
-    return self.user.user_name
+def create_profile(sender, **kwargs):
+    user = kwargs["instance"]
+    if kwargs["created"]:
+        user_profile = UserProfile(user=user)
+        user_profile.save()
+post_save.connect(create_profile, sender=User)

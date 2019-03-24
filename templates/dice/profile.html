@@ -4,22 +4,48 @@
 
 {% block title %}{{ selecteduser.user_name }} Profile{% endblock %}
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+     <link rel="stylesheet" href="static/css/base.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/Profile-Edit-Form-1.css">
+    <link rel="stylesheet" href="static/css/Profile-Edit-Form.css">
+</head>
+
+
 {% block body_block %}
 <!-- Material form is just a materialize thing for django forms -->
-<div class="col s12 m8 offset-m2">
-      <div class="card">
-        <div class="card-content">
-        <h2 class="flow-text">Update your information</h2>
-          <form action="." method="POST" class="padding">
-            {% csrf_token %} {{ noodle_form.as_p }}
-            <div class="divider"></div>
-            {{ formset.management_form }}
-                {{ formset.as_p }}
-            <button type="submit" class="btn-floating btn-large waves-light waves-effect"><i class="large material-icons">done</i></button>
-            <a href="#" onclick="window.history.back(); return false;" title="Cancel" class="btn-floating waves-effect waves-light red"><i class="material-icons">history</i></a>
-
+<body style="background-image: url(%'static/images/website_image/couch co-op.jpg'%);">
+    <div class="container profile profile-view" id="profile" style="height: 393px;">
+       <form id="profile_form" method="post" action="{% url 'dice/profile.html' %}" enctype="multipart/form-data">
+           {% csrf_token %}
+            <div class="form-row profile-row">
+                <div class="col-md-4 relative">
+                    <div class="avatar">
+                        <div class="avatar-bg center" style="height: 264px;width: 226px;"></div>
+                    </div><input type="file" class="form-control" name="avatar-file"></div>
+                <div class="col-md-8">
+                    <h1>{{selecteduser.username}} Profile </h1>
+                    <hr>
+                    <div class="form-group"><label>Bio</label></div><input class="form-control" type="text" style="width: 471px;height: 121px;">
+                    <div class="form-group"><label>Games List</label></div><input class="form-control" type="text" style="width: 474px;height: 115px;">
+                    <div class="form-row">
+                        <div class="col-md-12 content-right"><button class="btn btn-primary form-btn" type="submit">SAVE </button><button class="btn btn-danger form-btn" type="reset">CANCEL </button></div>
+                    </div>
+                </div>
+            </div>
         </form>
-        </div>
     </div>
-</div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/Profile-Edit-Form.js"></script>
+</body>
+
+
 {% endblock %}

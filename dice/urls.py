@@ -6,7 +6,6 @@ from django.conf.urls import include
 from dice import views
 from django.conf.urls.static import static
 from machina.app import board
-from registration.backends.simple.views import RegistrationView
 from django.contrib.auth.views import login
 
 urlpatterns=[
@@ -25,7 +24,6 @@ urlpatterns=[
      url(r'^profile/(?P<user_name>[\w\-]+)/$', views.profile, name='profile'),
      url(r'^events/$', views.events, name='events'),
      url(r'^createevent/$', views.create_event, name='create_event'),
-     url(r'^accounts/', include('registration.backends.simple.urls')),
      url(r'^like/$', views.like_game, name='like_game'),
      url(r'^dislike/$', views.dislike_game, name='dislike_game'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

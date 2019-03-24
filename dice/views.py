@@ -76,7 +76,7 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('home')
+        return redirect('profile_registration')
     else:
         form = RegistrationForm()
 
@@ -195,7 +195,7 @@ def change_password(request):
             messages.error(request, 'Please correct the error below.')
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, 'accounts/change_password.html', {
+    return render(request, 'home.html', {
         'form': form
     })
 
@@ -211,19 +211,13 @@ def register_profile(request):
              user_profile.user = request.user
              user_profile.save()
 
-             return redirect('home')
+             return redirect('home.html')
          else:
              print(form.errors)
 
      context_dict = {'form':form}
 
      return render(request, 'dice/profile_registration.html', context_dict)
-
-class MyRegistrationView(RegistrationView):
-    def get_success_url(self, user):
-        return reverse('register_profile')
-
-
 
 @login_required
 def profile(request, user_name):
@@ -233,7 +227,7 @@ def profile(request, user_name):
         return redirect('home')
     userprofile = UserProfile.objects.get_or_create(user=user)[0]
     form = UserProfileForm(
-        {'website': userprofile.website,'picture': userprofile.picture})
+        {'picture': userprofile.picture, 'bio': userprofile.bio, 'games_list': userprofile.games_list, 'location': userprofile.player_location })
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
@@ -246,32 +240,3 @@ def profile(request, user_name):
     return render(request, 'dice/profile.html',
               {'userprofile': userprofile, 'selecteduser': user, 'form': form})
 
-@login_required
-def edit_user(request, pk):
-    user = User.objects.get(pk=pk)
-    user_form = UserProfileForm(instance=user)
-
-    ProfileInlineFormset = inlineformset_factory(User, UserProfile, fields=('bio', 'player_location', 'games_list'))
-    formset = ProfileInlineFormset(instance=user)
-
-    if request.user.is_authenticated() and request.user.id == user.id:
-        if request.method == "POST":
-            user_form = UserProfileForm(request.POST, request.FILES, instance=user)
-            formset = ProfileInlineFormset(request.POST, request.FILES, instance=user)
-
-            if user_form.is_valid():
-                created_user = user_form.save(commit=False)
-                formset = ProfileInlineFormset(request.POST, request.FILES, instance=created_user)
-
-                if formset.is_valid():
-                    created_user.save()
-                    formset.save()
-                    return HttpResponseRedirect('/dice/profile/')
-
-        return render(request, "account/account_update.html", {
-            "noodle": pk,
-            "noodle_form": user_form,
-            "formset": formset,
-        })
-    else:
-        raise PermissionDenied

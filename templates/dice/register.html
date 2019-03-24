@@ -1,8 +1,16 @@
 {% extends 'dice/base.html' %}
 {% load staticfiles %}
 {% block body_block %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}"/>
 
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}"/>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Document</title>
+   </head>
 <body>
   <div class="container">
     <div class="row">
@@ -10,7 +18,7 @@
         <div class="card card-signin flex-row my-5">
           <div class="card-img-left d-none d-md-flex">
              <!-- Background image for card set in CSS! -->
-             <form id="user_form" method="post" action="{% url 'dice/register.html' %}" 16 enctype="multipart/form-data">
+             <form id="user_form" method="post" action="{% url 'register.html' %}" 16 enctype="multipart/form-data">
 
                  {% csrf_token %}
           <div class="card-body">
@@ -48,6 +56,6 @@
     </div>
   </div>
 </body>
-
+</html>
 
 {% endblock %}

@@ -6,7 +6,7 @@ from django.db import models
 from django import forms
 from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
-from mezzanine.core.fields import FileField
+
 
 
 class Category(models.Model):

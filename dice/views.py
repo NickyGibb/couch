@@ -80,7 +80,7 @@ def register(request):
             user.set_password(user.password)
             user.save()
 
-            return redirect('profile_registration.html.html')
+            return redirect('profile_registration.html')
 
             registered = True
 

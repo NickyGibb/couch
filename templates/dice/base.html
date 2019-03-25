@@ -18,22 +18,14 @@
     <link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js">
     <link rel="stylesheet" href= "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href= "https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-</head>
-
-
-  </title>
-
-</head>
-<body>
-{% block body_block %}
-<!-- Navigation -->
+   {% block nav %}
 <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar" style="font-family: 'Advent Pro', sans-serif;color: #eeeeee;">
         <div class="container"><a class="navbar-brand logo" href="{% url 'home' %}">COUCH CO-OP</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse"
                 id="navcol-1" style="background-color: #ffffff;">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'about' %}">ABOUT</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'game' %}">GAMES</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'dice/about' %}">ABOUT</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'dice/game' %}">GAMES</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/dice/forum/">FORUM</a></li>
                     {% if user.is_authenticated%}
                      <li class="nav-item" role="presentation"><a class="nav-link" href="/dice/profile/">PROFILE</a></li>
@@ -46,8 +38,21 @@
             </div>
         </div>
     </nav>
+{% endblock %}
+</head>
+
+
+
+
+
+<body>
+<div>
+{% block body_block %}
+
 
 {% endblock %}
+    </div>
+<body>
 
 !-- Footer -->
   <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
@@ -55,6 +60,8 @@
       <small>Copyright &copy; Couch CO-OP</small>
     </div>
   </footer>
+
+<html>
 
 
 

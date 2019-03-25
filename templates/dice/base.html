@@ -4,7 +4,11 @@
 
 <html>
 <head lang="en">
-
+<style media="screen">
+.navbar {
+  maxß-height: 80px;
+}
+</style>
 
 <head>
     <meta charset="utf-8">
@@ -28,8 +32,8 @@
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'game' %}">GAMES</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/dice/forum/">FORUM</a></li>
                     {% if user.is_authenticated%}
-                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url'profile' %}">PROFILE</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link"></a> <a href="{% url 'logged_out' %}" >LOGOUT</a></li>
+                     <li class="nav-item" role="presentation"><a class="nav-link" href="/dice/profile">PROFILE</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link"></a> <a href="/dice/logout" >LOGOUT</a></li>
                     {% else %}
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'register' %}">REGISTER</a></li>
                   <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'login' %}">LOGIN</a></li>
@@ -54,14 +58,11 @@
     </div>
 <body>
 
-!-- Footer -->
   <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
     <div class="container text-center">
       <small>Copyright &copy; Couch CO-OP</small>
-    </div>
+
   </footer>
+  </div>
 
 <html>
-
-
-

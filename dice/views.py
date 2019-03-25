@@ -58,7 +58,7 @@ def game(request):
     context_dict = {'game': game}
     visitor_cookie_handler(request)
 
-    response = render(request, 'game.html', context_dict)
+    response = render(request, 'dice/game.html', context_dict)
     return response
 
 def user(request):
@@ -256,4 +256,3 @@ def profile(request, user_name):
 
     return render(request, 'profile',
               {'userprofile': userprofile, 'selecteduser': user, 'form': form})
-

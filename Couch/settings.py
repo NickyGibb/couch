@@ -48,8 +48,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'bootstrap_toolkit',
     'registration',
-    'bootstrap4'
-    'crispy_forms'
+    'bootstrap4',
+    'crispy_forms',
 
 ] + get_machina_apps()
 

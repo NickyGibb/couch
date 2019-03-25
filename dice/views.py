@@ -58,7 +58,7 @@ def game(request):
     context_dict = {'game': game}
     visitor_cookie_handler(request)
 
-    response = render(request, 'game.html', context_dict)
+    response = render(request, 'dice/game.html', context_dict)
     return response
 
 def user(request):
@@ -90,7 +90,7 @@ def register(request):
         user_form = UserForm()
 
     return render(request,
-                  'user/register.html',
+                  'dice/register.html',
                   {'user_form': user_form,
                    'registered': registered
                    })
@@ -121,7 +121,7 @@ def login_view(request):
              return redirect('home')
     else:
         form = AuthenticationForm()
-    return render(request,'login', {'form':form})
+    return render(request,'dice/login', {'form':form})
 
 
 
@@ -254,6 +254,6 @@ def profile(request, user_name):
         else:
             print(form.errors)
 
-    return render(request, 'profile',
+    return render(request, 'dice/profile.html',
               {'userprofile': userprofile, 'selecteduser': user, 'form': form})
 

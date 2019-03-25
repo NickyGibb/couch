@@ -28,7 +28,7 @@
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'game' %}">GAMES</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/dice/forum/">FORUM</a></li>
                     {% if user.is_authenticated%}
-                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url'profile' %}">PROFILE</a></li>
+                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'profile' %}">PROFILE</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link"></a> <a href="{% url 'logged_out' %}" >LOGOUT</a></li>
                     {% else %}
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'register' %}">REGISTER</a></li>

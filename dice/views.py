@@ -58,7 +58,7 @@ def game(request):
     context_dict = {'game': game}
     visitor_cookie_handler(request)
 
-    response = render(request, 'dice/game.html', context_dict)
+    response = render(request, 'game.html', context_dict)
     return response
 
 def user(request):
@@ -80,7 +80,7 @@ def register(request):
             user.set_password(user.password)
             user.save()
 
-            return redirect('dice/profile_registration.html.html')
+            return redirect('profile_registration.html.html')
 
             registered = True
 
@@ -121,7 +121,7 @@ def login_view(request):
              return redirect('home')
     else:
         form = AuthenticationForm()
-    return render(request,'dice/login.html', {'form':form})
+    return render(request,'login', {'form':form})
 
 
 
@@ -160,7 +160,7 @@ def show_category(request, category_name_slug):
         context_dict['category'] = None
         context_dict['games'] = None
 
-    return render(request, 'dice/category.html', context_dict)
+    return render(request, 'category.html', context_dict)
 
     logout(request)
     return HttpResponseRedirect(reverse('home'))
@@ -207,7 +207,7 @@ def change_password(request):
             messages.error(request, 'Please correct the error below.')
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, 'home.html', {
+    return render(request, 'home', {
         'form': form
     })
 
@@ -223,7 +223,7 @@ def register_profile(request):
              user_profile.user = request.user
              user_profile.save()
 
-             return redirect('home.html')
+             return redirect('home')
 
              if 'image' in request.FILES:
                  profile.image = request.FILES['image']
@@ -234,7 +234,7 @@ def register_profile(request):
 
      context_dict = {'form':form}
 
-     return render(request, 'dice/profile_registration.html', context_dict)
+     return render(request, 'profile_registration', context_dict)
 
 @login_required
 def profile(request, user_name):
@@ -254,6 +254,6 @@ def profile(request, user_name):
         else:
             print(form.errors)
 
-    return render(request, 'dice/profile.html',
+    return render(request, 'profile',
               {'userprofile': userprofile, 'selecteduser': user, 'form': form})
 

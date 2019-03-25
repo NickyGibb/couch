@@ -107,7 +107,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('dice/home.html'))
+                return HttpResponseRedirect(reverse('home.html'))
             else:
                 return HttpResponse("Your account is disabled.")
         else:

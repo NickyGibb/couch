@@ -3,6 +3,16 @@
 {% load staticfiles %}
 
 <html>
+<style media="screen">
+  bg{
+      background-size: 1800px 900px;
+      background-repeat: no-repeat;
+      background-position: top;
+      background-attachment: fixed;
+  }
+  
+</style>
+
 {% block title %}Home{% endblock %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}"/>
  <meta charset="utf-8">
@@ -21,7 +31,7 @@
     <link rel="stylesheet" href= "https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 </head>
 {% block body_block%}
-<body>
+<body id="bg" style="background-image: url('{% static "/images/website_image/couch co-op.jpg"%}')";>
  <!-- Full Page Image Header with Vertically Centered Content -->
 <header class="masthead">
   <div class="container h-100">
@@ -36,6 +46,7 @@
 
 
 </body>
+
 {% endblock %}
 
 </html>

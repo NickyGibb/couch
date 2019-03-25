@@ -28,15 +28,15 @@
             <div class="collapse navbar-collapse"
                 id="navcol-1" style="background-color: #ffffff;">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'about' %}">ABOUT</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'game' %}">GAMES</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/dice/about/">ABOUT</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/dice/game/">GAMES</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="/dice/forum/">FORUM</a></li>
                     {% if user.is_authenticated%}
-                     <li class="nav-item" role="presentation"><a class="nav-link" href="/dice/profile">PROFILE</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link"></a> <a href="/dice/logout" >LOGOUT</a></li>
+                     <li class="nav-item" role="presentation"><a class="nav-link" href="/dice/profile/">PROFILE</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/dice/logout/" >LOGOUT</a></li>
                     {% else %}
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'register' %}">REGISTER</a></li>
-                  <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'login' %}">LOGIN</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/dice/register/">REGISTER</a></li>
+                  <li class="nav-item" role="presentation"><a class="nav-link" href="/dice/login/">LOGIN</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -52,6 +52,17 @@
 <body>
 <div>
 {% block body_block %}
+
+
+
+
+
+
+
+
+
+
+
 
 
 {% endblock %}

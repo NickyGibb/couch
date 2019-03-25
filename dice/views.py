@@ -16,7 +16,6 @@ from dice.forms import UserProfileForm, UserForm
 from dice.models import User, Game, Category, UserProfile
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
-from registration.backends.simple.views import RegistrationView
 from django import forms
 from django.core.urlresolvers import reverse
 from dice.forms import RegistrationForm
@@ -71,17 +70,30 @@ def user(request):
     response = render(request, 'dice/profile.html', context_dict)
     return response
 
+# Creates a new user
 def register(request):
+    registered = False
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-        return redirect('profile_registration')
-    else:
-        form = RegistrationForm()
+        user_form = UserForm(data=request.POST)
+        if user_form.is_valid():
+            user = user_form.save()
+            user.set_password(user.password)
+            user.save()
 
-        args = {'form':form}
-        return render(request, 'dice/register.html', args)
+            return redirect('dice/profile_registration.html.html')
+
+            registered = True
+
+        else:
+            print(user_form.errors)
+    else:
+        user_form = UserForm()
+
+    return render(request,
+                  'user/register.html',
+                  {'user_form': user_form,
+                   'registered': registered
+                   })
 
 
 def user_logout(request):
@@ -212,6 +224,11 @@ def register_profile(request):
              user_profile.save()
 
              return redirect('home.html')
+
+             if 'image' in request.FILES:
+                 profile.image = request.FILES['image']
+             profile.save()
+
          else:
              print(form.errors)
 

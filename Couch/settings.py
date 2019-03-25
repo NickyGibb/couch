@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'bootstrap_toolkit',
     'registration',
     'bootstrap4'
+    'crispy_forms'
 
 ] + get_machina_apps()
 
@@ -85,6 +86,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Couch.wsgi.application'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 # Database

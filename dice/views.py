@@ -114,7 +114,8 @@ def user_login(request):
             else:
                 return HttpResponse("Your account is disabled.")
         else:
-            return render(request, '/templates/dice/login.html', {'message':"Invalid login details supplied"})
+            print("Invalid login details: {0}, {1}".format(username, password))
+            return HttpResponse("Invalid login details supplied.")
 
     # The request is not a HTTP POST, so display the login form.
     # This scenerio would most likely be a HTTP GET.

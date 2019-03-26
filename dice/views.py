@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, request
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -12,12 +12,12 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from dice.forms import UserProfileForm, UserForm
 from dice.models import User, Game, Category, UserProfile
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django import forms
-from django.core.urlresolvers import reverse
 from dice.forms import RegistrationForm
 from django.forms.models import inlineformset_factory
 
@@ -75,23 +75,26 @@ def register(request):
     registered = False
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
-        if user_form.is_valid():
+        profile_form = UserProfileForm(data=request.POST)
+        if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
             user.save()
-
-            return redirect('dice/profile_registration.html')
-
+            profile = profile_form.save(commit=False)
+            profile.user = user
             registered = True
-
+            if 'image' in request.FILES:
+                profile.image = request.FILES['image']
+                profile.save()
         else:
-            print(user_form.errors)
+            print(user_form.errors, profile_form.errors)
     else:
         user_form = UserForm()
-
+        profile_form = UserProfileForm()
     return render(request,
-                  'dice/register.html',
+                  'user/register.html',
                   {'user_form': user_form,
+                   'profile_form': profile_form,
                    'registered': registered
                    })
 
@@ -107,7 +110,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('home.html'))
+                return HttpResponseRedirect(reverse('home'))
             else:
                 return HttpResponse("Your account is disabled.")
         else:
@@ -147,8 +150,6 @@ def login_view(request):
     else:
         form = AuthenticationForm()
     return render(request,'dice/login', {'form':form})
-
-
 
 
 def visitor_cookie_handler(request):
@@ -235,31 +236,6 @@ def change_password(request):
     return render(request, 'home', {
         'form': form
     })
-
-@login_required
-def register_profile(request):
-
-     form = UserProfileForm()
-
-     if request.method == 'POST':
-         form = UserProfileForm(request.POST, request.FILES)
-         if form.is_valid():
-             user_profile = form.save(commit=False)
-             user_profile.user = request.user
-             user_profile.save()
-
-             return redirect('home')
-
-             if 'image' in request.FILES:
-                 profile.image = request.FILES['image']
-             profile.save()
-
-         else:
-             print(form.errors)
-
-     context_dict = {'form':form}
-
-     return render(request, 'profile_registration', context_dict)
 
 @login_required
 def profile(request, user_name):

@@ -1,8 +1,8 @@
 {% extends 'dice/base.html' %}
 {% load staticfiles %}
+{% load crispy_forms_tags %}
+
 {% block body_block %}
-
-
 <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}"/>
 <html lang="en">
   <head>
@@ -17,54 +17,57 @@
     <link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js">
     <link rel="stylesheet" href= "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href= "https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-      <title>Document</title>
+    <title>Document</title>
 </head>
 
-
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-10 col-xl-9 mx-auto">
-        <div class="card card-signin flex-row my-5">
-          <div class="card-img-left d-none d-md-flex">
-             <!-- Background image for card set in CSS! -->
-             <form id="user_form" method="post" action="{% url 'register.html' %}" 16 enctype="multipart/form-data">
-                 {% csrf_token %}
-          <div class="card-body">
-            <h5 class="card-title text-center">Register</h5>
-            <form class="form-signin">
-              <div class="form-label-group">
-                <input type="text" id="id_username" name ="username" for="username" class="form-control" placeholder="Username" required>
-                <label for="id_username">Username</label>
-              </div>
-              <div class="form-label-group">
-                <input type="email" id="email" name ="email" for="email" class="form-control" placeholder="Email address" required>
-                <label for="email">Email address</label>
-              </div>
+      <div class="container">
+         <div class="row">
+            <div class="col-md-5 mx-auto">
+               <div id="first">
+                  <div class="myform form ">
+                     <div class="logo mb-3">
+                        <div class="col-md-12 text-center">
+                           <h1>Login</h1>
+                        </div>
+                     </div>
+                     {% block body_block %}
+                     <div class="page-header" align="center">
+                        <h1><strong>Registration</strong></h1>
+                     </div>
+                     {% if registered %}
+                     <div class="col-xs-12" align="center">
+                        <strong>
+                           <h2>Thank you for registering with Couch CO-OP!</h2>
+                        </strong>
+                        <p>
+                        <h3><a href="{% url 'home' %}">Return to the homepage.</a></h3>
+                        <br/>
+                        {% else %}
+                        <form id="user_form" method="post" action="{% url 'register' %}"
+                           enctype="multipart/form-data">
+                     </div>
+                     <!-- Display each form -->
+                     {% csrf_token %}
+                     <div class="row">
+                     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                     <h2>Sign Up Here <small>and you can begin contributing to the BestBrew Community.</small></h2><p>
+                     {{ user_form|crispy }}
+                     {{ profile_form|crispy }}
+                     <!-- Provide a button to click to submit the form. -->
+                     <input type="submit" class="btn btn-primary" name="submit" value="Register" />
+                     </form>
+                     {% endif %}
+                     </div>
+                     </div>
+                     {% endblock %}
+                  </div>
+               </div>
+            </div>
+   </body>
 
-              <hr>
 
-              <div class="form-label-group">
-                <input type="password" id="password1" class="form-control" placeholder="Password" required>
-                <label for="password1">Password</label>
-              </div>
 
-              <div class="form-label-group">
-                <input type="password" id="password2" class="form-control" placeholder="Password" required>
-                <label for="password2">Confirm password</label>
-              </div>
-
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
-              <a class="d-block text-center mt-2 small" href="/dice/login.html">Sign In</a>
-              <hr class="my-4">
-
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
 </html>
 
 {% endblock %}

@@ -245,4 +245,4 @@ def profile(request, pk=None):
     else:
         user = request.user
     args = {'user': user}
-    return render(request, 'dice/profile.html', args)
+    return render(request, 'profile.html', args)

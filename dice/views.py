@@ -239,6 +239,7 @@ def change_password(request):
     })
 
 @login_required
+<<<<<<< HEAD
 def profile(request, username):
     try:
         user = User.objects.get(username=username)
@@ -258,3 +259,12 @@ def profile(request, username):
 
     return render(request, 'dice/profile.html',
               {'userprofile': userprofile, 'selecteduser': user, 'form': form})
+=======
+def profile(request, pk=None):
+    if pk:
+        user = User.objects.get(pk=pk)
+    else:
+        user = request.user
+    args = {'user': user}
+    return render(request, 'profile.html', args)
+>>>>>>> c21365656e649a193c5112e5fde490da830e52be

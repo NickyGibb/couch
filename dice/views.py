@@ -92,7 +92,7 @@ def register(request):
         user_form = UserForm()
         profile_form = UserProfileForm()
     return render(request,
-                  'user/register.html',
+                  'dice/register.html',
                   {'user_form': user_form,
                    'profile_form': profile_form,
                    'registered': registered
@@ -114,14 +114,14 @@ def user_login(request):
             else:
                 return HttpResponse("Your account is disabled.")
         else:
-            return render(request, 'dice/login.html', {'message':"Invalid login details supplied"})
+            return render(request, '/templates/dice/login.html', {'message':"Invalid login details supplied"})
 
     # The request is not a HTTP POST, so display the login form.
     # This scenerio would most likely be a HTTP GET.
     else:
         # No contect variables to pass to the template system, hence the
         # blank dictionary object...
-        return render(request, 'dice/login.html', {})
+        return render(request, '/templates/dice/login.html', {})
 
 
 def user_logout(request):

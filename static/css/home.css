@@ -1,6 +1,7 @@
-.container h-100 {
+.masthead {
   height: 100vh;
   min-height: 500px;
+  background-image: url('{% static "/images/website_image/couch co-op.jpg"%}');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

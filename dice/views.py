@@ -241,7 +241,7 @@ def change_password(request):
 @login_required
 def profile(request, username):
     try:
-        user = User.objects.get(user_name=username)
+        user = User.objects.get(username=username)
     except User.DoesNotExist:
         return redirect('home')
     userprofile = UserProfile.objects.get_or_create(user=user)[0]

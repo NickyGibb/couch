@@ -23,8 +23,6 @@
 <!-- Material form is just a materialize thing for django forms -->
 <body style="background-image: url(%'static/images/website_image/couch co-op.jpg'%);">
     <div class="container profile profile-view" id="profile" style="height: 393px;">
-       <form id="profile_form" method="post" action="{% url 'dice/profile.html' %}" enctype="multipart/form-data">
-           {% csrf_token %}
             <div class="form-row profile-row">
                 <div class="col-md-4 relative">
                     <div class="avatar">
@@ -33,12 +31,12 @@
                 <div class="col-md-8">
                     <h1>{{selecteduser.username}} Profile </h1>
                     <hr>
-                    <div class="form-group"><label style="height: 12px;font-size: 20px;"><strong>Bio</strong></label></div><input class="form-control" type="text" style="width: 471px;height: 121px;">
-                    <div class="form-group"><label style="height: 12px;font-size: 20px;"><strong>Games List</strong></label></div><input class="form-control" type="text" style="width: 474px;height: 115px;">
-                    <div class="form-group"><label style="height: 12px;font-size: 20px;"><strong>Location</strong></label></div><input class="form-control" type="text" style="width: 250px;height: 40px;">
-                    <div class="form-row">
-
-                        <div class="col-md-12 content-right"><button class="btn btn-primary form-btn" type="submit">SAVE </button><button class="btn btn-danger form-btn" type="reset">CANCEL </button></div>
+                    <div class="col-sm-5 col-xs-6 tital " >Bio: </div>
+                    <div class="col-sm-5 col-xs-6 tital " >{{ user.userprofile.bio }} </div>
+                    <div class="col-sm-5 col-xs-6 tital " >Games List: </div>
+                    <div class="col-sm-5 col-xs-6 tital " >{{ user.userprofile.games_list }} </div>
+                    <div class="col-sm-5 col-xs-6 tital " >Location: </div>
+                    <div class="col-sm-5 col-xs-6 tital " >{{ user.userprofile.player_location }} </div>
                     </div>
                 </div>
             </div>

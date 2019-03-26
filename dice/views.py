@@ -239,22 +239,10 @@ def change_password(request):
     })
 
 @login_required
-def profile(request, username):
-    try:
-        user = User.objects.get(username=username)
-    except User.DoesNotExist:
-        return redirect('home')
-    userprofile = UserProfile.objects.get_or_create(user=user)[0]
-    form = UserProfileForm(
-        {'picture': userprofile.picture, 'bio': userprofile.bio, 'games_list': userprofile.games_list, 'location': userprofile.player_location })
-
-    if request.method == 'POST':
-        form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
-        if form.is_valid():
-            form.save(commit=True)
-            return redirect('profile', user.user_name)
-        else:
-            print(form.errors)
-
-    return render(request, 'dice/profile.html',
-              {'userprofile': userprofile, 'selecteduser': user, 'form': form})
+def profile(request, pk=None):
+    if pk:
+        user = User.objects.get(pk=pk)
+    else:
+        user = request.user
+    args = {'user': user}
+    return render(request, 'dice/profile.html', args)

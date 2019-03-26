@@ -27,7 +27,7 @@ def home(request):
     context_dict = {}
     visitor_cookie_handler(request)
     context_dict['visits'] = request.session['visits']
-    response = render(request, 'dice/home.html', context=context_dict)
+    response = render(request, 'home.html', context=context_dict)
 
     return response
 
@@ -48,7 +48,7 @@ def about(request):
     visitor_cookie_handler(request)
     context_dict = {}
     context_dict['visits'] = request.session['visits']
-    response = render(request, 'dice/about.html', context=context_dict)
+    response = render(request, 'about.html', context=context_dict)
 
     return response
 
@@ -58,7 +58,7 @@ def game(request):
     context_dict = {'game': game}
     visitor_cookie_handler(request)
 
-    response = render(request, 'dice/game.html', context_dict)
+    response = render(request, 'game.html', context_dict)
     return response
 
 def user(request):
@@ -67,7 +67,7 @@ def user(request):
 
     visitor_cookie_handler(request)
 
-    response = render(request, 'dice/profile.html', context_dict)
+    response = render(request, 'profile.html', context_dict)
     return response
 
 # Creates a new user
@@ -92,7 +92,7 @@ def register(request):
         user_form = UserForm()
         profile_form = UserProfileForm()
     return render(request,
-                  'dice/register.html',
+                  'register.html',
                   {'user_form': user_form,
                    'profile_form': profile_form,
                    'registered': registered

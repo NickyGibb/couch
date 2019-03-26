@@ -66,10 +66,11 @@ class UserProfile(models.Model):
     player_location = models.CharField(max_length=200, default='', blank=True)
     games_list = models.CharField(max_length=200, null=True)
 
+    def __str__(self):
+        return self.user.username
 
 def create_profile(sender, **kwargs):
     user = kwargs["instance"]
     if kwargs["created"]:
-        user_profile = UserProfile(user=user)
-        user_profile.save()
+        user_profile = UserProfile.objects.create(user=kwargs['instance'])
 post_save.connect(create_profile, sender=User)

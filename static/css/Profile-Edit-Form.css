@@ -50,7 +50,7 @@ hr {
 }
 
 div.avatar-bg {
-  background:(<img src="{{ MEDIA_URL }}{{user.userprofile.picture}}" );
+  background:(<img src="{{ MEDIA_URL }}{{user.userprofile.image.url}}" );
   background-position: 50% 50%;
   height: 200px;
   width: 200px;

@@ -122,7 +122,7 @@ def user_login(request):
     else:
         # No contect variables to pass to the template system, hence the
         # blank dictionary object...
-        return render(request, '/templates/dice/login.html', {})
+        return render(request, 'login.html', {})
 
 
 def user_logout(request):
@@ -150,7 +150,7 @@ def login_view(request):
              return redirect('home')
     else:
         form = AuthenticationForm()
-    return render(request,'dice/login', {'form':form})
+    return render(request,'login.html', {'form':form})
 
 
 def visitor_cookie_handler(request):

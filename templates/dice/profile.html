@@ -21,17 +21,17 @@
 
 {% block body_block %}
 <!-- Material form is just a materialize thing for django forms -->
-<body style="background-image: url(%'static/images/website_image/couch co-op.jpg'%);">
-    <div class="container profile profile-view" id="profile" style="height: 393px;">
+<body style="background-image: url('{% static "/images/website_image/couch co-op.jpg"%}')";>
+    <div class="container profile profile-view" id="profile" style="height: 400px;">
             <div class="form-row profile-row">
                 <div class="col-md-4 relative">
                     <div class="avatar">
                         <div class="avatar-bg center" style="height: 264px;width: 226px;"></div>
                     </div><input type="file" class="form-control" name="avatar-file"></div>
-                <div class="col-md-8">
+                <div class="col-md-8 style=">
                     <h1>{{selecteduser.username}} Profile </h1>
                     <hr>
-                    <div class="col-sm-5 col-xs-6 tital " >Bio: </div>
+                    <div class="col-sm-5 col-xs-6 tital" >Bio: </div>
                     <div class="col-sm-5 col-xs-6 tital " >{{ user.userprofile.bio }} </div>
                     <div class="col-sm-5 col-xs-6 tital " >Games List: </div>
                     <div class="col-sm-5 col-xs-6 tital " >{{ user.userprofile.games_list }} </div>

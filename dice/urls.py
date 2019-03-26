@@ -19,7 +19,7 @@ urlpatterns=[
      url(r'^admin/', admin.site.urls),
      url(r'^register/$', views.register, name='register'),
      url(r'^password/$', views.change_password, name='change_password'),
-     url(r'^register_profile/$', views.register_profile, name='register_profile'),
+     #url(r'^register_profile/$', views.register_profile, name='register_profile'),
      url(r'^profile/$', views.profile, name='profile'),
      url(r'^events/$', views.events, name='events'),
      url(r'^createevent/$', views.create_event, name='create_event'),

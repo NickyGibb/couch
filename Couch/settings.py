@@ -30,7 +30,7 @@ SECRET_KEY = 'r_g4j-(agayvs53)$48$0+&4m4hw$g!@@c-&#8hu%b9coe7^$h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['rdmaloney1994.pythonanywhere.com/']
 
 
 # Application definition
